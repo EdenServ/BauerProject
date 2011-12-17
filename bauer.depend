@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1324033008 source:/home/rednaks/Documents/2p2/MiniProjetC/bauer/bauer/Livres.c
+	"Livres.h"
+	<stdio.h>
+
+1324032960 /home/rednaks/Documents/2p2/MiniProjetC/bauer/bauer/Livres.h
+
+1324033147 source:/home/rednaks/Documents/2p2/MiniProjetC/bauer/bauer/Menus.c
+	"Menus.h"
+	<stdio.h>
+	<stdlib.h>
+
+1324032855 /home/rednaks/Documents/2p2/MiniProjetC/bauer/bauer/Menus.h
+
+1324032984 source:/home/rednaks/Documents/2p2/MiniProjetC/bauer/bauer/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Menus.h"
+	"Livres.h"
+
