@@ -8,7 +8,7 @@
 int AfficheMenuPrincipal(void)
 {
     int choix;
-    printf("\t**Gestion d'une bibliothèque**\n");
+    printf("\t*** Gestion d'une bibliothèque ***\n");
     printf("\n\n##############################\n\n");
     printf("1-Gestion des livres.\n");
     printf("2-Gestion des abonnés.\n");
