@@ -10,10 +10,10 @@ int main()
     switch(choix)
     {
         case 1:
-            TraitementLivre(AfficheMenuLivres());
+            TraitementLivre(AfficheMenuLivres());  // Déclaré dans  Livres.h
             break;
         case 2:
-            //TraitementAbonnee(AfficheMenuAbonnes());
+            TraitementAbonnee(AfficheMenuAbonnes());
             break;
         case 3:
             printf("Bye bye :)\n");

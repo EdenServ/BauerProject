@@ -18,3 +18,22 @@
 	"Menus.h"
 	"Livres.h"
 
+1324112297 source:/home/rednaks/BauerProject/Livres.c
+	"Livres.h"
+	<stdio.h>
+
+1324112297 /home/rednaks/BauerProject/Livres.h
+
+1324112297 source:/home/rednaks/BauerProject/Menus.c
+	"Menus.h"
+	<stdio.h>
+	<stdlib.h>
+
+1324112297 /home/rednaks/BauerProject/Menus.h
+
+1324112297 source:/home/rednaks/BauerProject/main.c
+	<stdio.h>
+	<stdlib.h>
+	"Menus.h"
+	"Livres.h"
+
