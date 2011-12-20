@@ -3,7 +3,7 @@
 
 
 int AfficheMenuPrincipal(void);
-int AfficheMenuLivre(void);
+int AfficheMenuLivres(void);
 int AfficheMenuAbonnes(void);
 
 

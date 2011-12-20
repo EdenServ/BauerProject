@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "Menus.h"
 #include "Livres.h"
+#include "Abonnes.h"
 
 int main()
 {
@@ -13,7 +14,7 @@ int main()
             TraitementLivre(AfficheMenuLivres());  // Déclaré dans  Livres.h
             break;
         case 2:
-            TraitementAbonnee(AfficheMenuAbonnes());
+            TraitementAbonnes(AfficheMenuAbonnes());
             break;
         case 3:
             printf("Bye bye :)\n");
