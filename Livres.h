@@ -1,5 +1,15 @@
+/*
+
+    Nom du projet : Gestion d'une bibliothèque
+    Nom de code : BauerProject
+    Codé par  : Skander Ben Mahmoud et Mones Ben Jmâa.
+    Fichier courant : Livres.h
+    Déscription : Les prototypes de fonctions, Maccros et définition des structures concernant la gesiont des livres.
+
+    */
 
 
+#define DB_LIVRE "libres.db"    // on définit le nom du fichier où seront mis les informations concernant les livres.
 
 
 typedef struct livre {

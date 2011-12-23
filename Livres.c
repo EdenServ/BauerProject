@@ -1,3 +1,13 @@
+/*
+
+    Nom du projet : Gestion d'une bibliothèque
+    Nom de code : BauerProject
+    Codé par  : Skander Ben Mahmoud et Mones Ben Jmâa.
+    Fichier courant : Livres.c
+    Déscription : Dans ce fichier seront déclaré les fonctions de la gestion des livres.
+
+    */
+
 #include "Livres.h"
 #include <stdio.h>
 
@@ -11,7 +21,7 @@ void TraitementLivre(int choix)
             AjouterLivre();
             break;
         case 2:
-            //SupprimerLivre();
+            SupprimerLivre();
             break;
         case 3:
             break;
@@ -27,7 +37,7 @@ void AjouterLivre(void)
     int quantity=0;
     FILE  *fp=NULL;
 
-    fp = fopen("livres.txt","a");
+    fp = fopen(DB_LIVRE,"a");
     if(fp != NULL)
     {
         printf("Donner l'identifiant du livre\n");
@@ -46,6 +56,15 @@ void AjouterLivre(void)
     {
         printf("Problème d'accès à la base de donnée\n");
     }
+
+
+}
+
+
+
+void SupprimerLivre(void)
+{
+
 
 
 }
