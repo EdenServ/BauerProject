@@ -11,8 +11,6 @@
 
 
 #include "Menus.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 
 int AfficheMenuPrincipal(void)    // Menu Principal Affiché dans main.c : 4 choix possibles
@@ -85,4 +83,5 @@ int AfficheMenuEmprunts(void)
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);
+    return choix;
 }

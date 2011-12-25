@@ -9,6 +9,8 @@
     */
 
 
+#include <stdio.h>
+
 #define DB_LIVRE "libres.db"    // on définit le nom du fichier où seront mis les informations concernant les livres.
 
 

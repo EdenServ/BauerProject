@@ -9,7 +9,8 @@
     */
 
 #include "Livres.h"
-#include <stdio.h>
+#include "fonctions.h"
+
 
 
 void TraitementLivre(int choix)
@@ -33,15 +34,22 @@ void TraitementLivre(int choix)
 
 void AjouterLivre(void)
 {
-    LIVRE livre;
-    int quantity=0;
+    LIVRE livre,aux;
+    int quantity = 0;
     FILE  *fp=NULL;
 
-    fp = fopen(DB_LIVRE,"a");
+    fp = fopen(DB_LIVRE,"ab");
     if(fp != NULL)
     {
-        printf("Donner l'identifiant du livre\n");
-        scanf("%d",&livre.id);
+        if(taille_fichier(fp)!=0)
+        {
+            fseek(fp,-sizeof(LIVRE),SEEK_CUR);
+            fread(&aux,sizeof(LIVRE),1,fp);
+            livre.id=aux.id+1;  //auto incrementation de l'id
+        }
+        else
+            livre.id=1;
+
         printf("Donner le nom du livre\n");
         scanf("%s",livre.titre);
         printf("Donner l'ISBN du livre\n");
@@ -49,7 +57,7 @@ void AjouterLivre(void)
         printf("Donner la quantité de livres\n");
         scanf("%d",&quantity);
 
-        fprintf(fp,"%d %s %s %d\n",livre.id,livre.titre,livre.ISBN,quantity);
+        fwrite(&livre,sizeof(LIVRE),1,fp);   // ecriture binaire
         printf("Livre ajouté avec succès\n!");
         fclose(fp);
     }else

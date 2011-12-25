@@ -9,6 +9,8 @@
     */
 
 
+#include <stdio.h>
+#include <stdlib.h>
 
 int AfficheMenuPrincipal(void);
 int AfficheMenuLivres(void);
