@@ -9,3 +9,6 @@
     */
 
 
+
+
+void TraitementEmprunts(int choix);

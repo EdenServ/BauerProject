@@ -32,7 +32,7 @@ int AfficheMenuPrincipal(void)    // Menu Principal Affiché dans main.c : 4 cho
 // Selon le choix de l'utilisateur on affiche l'un de ces 3 menus :
 
 
-int AfficheMenuLivres(void)    //Premier sous menu : la gesion des livres 4 choix possibles; la valeur de retour est le choix de l'utilisateur
+int AfficheMenuLivres(void)    //Premier sous menu : la gesion des livres 5 choix possibles; la valeur de retour est le choix de l'utilisateur
 {
     int choix;
     system("clear");
@@ -41,6 +41,7 @@ int AfficheMenuLivres(void)    //Premier sous menu : la gesion des livres 4 choi
     printf("1-Ajouter un livre.\n");
     printf("2-Supprimer un livre.\n");
     printf("3-Infos sur un livre.\n");
+    printf("4-Lister les livres.\n");
     printf("4-Retourner au menu principal.\n");
 
     printf("\nTapez votre choix:\n");
@@ -49,7 +50,7 @@ int AfficheMenuLivres(void)    //Premier sous menu : la gesion des livres 4 choi
 }
 
 
-// Deuxième sous menus : la gestion des abonnées, 4 choix possibles; la valeur de retour est le choix de l'utilisateur.
+// Deuxième sous menus : la gestion des abonnées, 5 choix possibles; la valeur de retour est le choix de l'utilisateur.
 
 int AfficheMenuAbonnes(void)
 {
@@ -59,7 +60,8 @@ int AfficheMenuAbonnes(void)
     printf("1-Ajouter un abonné.\n");
     printf("2-Supprimer un abonné.\n");
     printf("3-Infos sur un abonné.\n");
-    printf("4-Retourner au menu principal.\n");
+    printf("4-Lister les abonnés.\n");
+    printf("5-Retourner au menu principal.\n");
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);

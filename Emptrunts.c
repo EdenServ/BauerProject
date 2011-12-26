@@ -11,3 +11,10 @@
 
 #include "Emprunts.h"
 #include <stdio.h>
+
+
+void TraitementEmprunts(int choix)
+{
+
+
+}

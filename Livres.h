@@ -11,11 +11,12 @@
 
 #include <stdio.h>
 
-#define DB_LIVRE "libres.db"    // on définit le nom du fichier où seront mis les informations concernant les livres.
+#define DB_LIVRE "db/livres.db"    // on définit le nom du fichier où seront mis les informations concernant les livres.
 
 
 typedef struct livre {
   int id;
+  int quantity;
   char titre[50];
   char ISBN[13];
 } LIVRE;
@@ -23,3 +24,5 @@ typedef struct livre {
 void TraitementLivre(int choix);
 void AjouterLivre(void);
 void SupprimerLivre(void);
+void InfosLivre(void);
+void ListerLivres(void);
