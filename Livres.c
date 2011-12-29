@@ -42,11 +42,10 @@ void AjouterLivre(void)
 {
     LIVRE livre,aux;
     FILE  *fp=NULL;
-
     fp = fopen(DB_LIVRE,"ab+");
     if(fp != NULL)
     {
-
+        fseek(fp,0,SEEK_END);
         if(ftell(fp)!=0)
         {
             fseek(fp,-sizeof(LIVRE),SEEK_CUR);
@@ -63,7 +62,6 @@ void AjouterLivre(void)
         scanf("%s",livre.ISBN);
         printf("Donner la quantité de livres\n");
         scanf("%d",&livre.quantity);
-
         fwrite(&livre,sizeof(livre),1,fp);   // ecriture binaire
         printf("Livre ajouté avec succès\n!");
         fclose(fp);
@@ -94,10 +92,12 @@ void SupprimerLivre(void)
         taille = taille_fichier(fp);
         if(taille>= sizeof(LIVRE)*id)
         {
-            if(!supprimer_ligne(id,sizeof(LIVRE),fp))
+            if(!supprimer_ligne(id,sizeof(LIVRE),fp,1))
+            {
                 printf("Livre supprimé avec succès !\n");
+            }
             else
-                printf("Erreur lors de la supprution du fichier !\n");
+                printf("Erreur lors de la suppression du fichier !\n");
         }else
             printf("Ce livre n'existe pas dans la base de donnée.\n");
     }else

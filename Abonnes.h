@@ -9,6 +9,7 @@
     */
 
 #include <stdio.h>
+#include <time.h>
 
 #define DB_ABONNE "db/abonnes.db"
 
@@ -16,7 +17,12 @@ typedef struct
 {
     char nom[10];
     char prenom[10];
+    int cin;
+    int telephone;
+    char email[50];
+    time_t date;
     unsigned int id;
+
 } ABONNE;
 
 void TraitementAbonnes(int choix);

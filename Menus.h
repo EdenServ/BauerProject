@@ -16,4 +16,5 @@ int AfficheMenuPrincipal(void);
 int AfficheMenuLivres(void);
 int AfficheMenuAbonnes(void);
 int AfficheMenuEmprunts(void);
-
+int AfficheMenuBugs(void);
+int AfficheMenuSeverty(void);

@@ -14,10 +14,17 @@
 #include "Livres.h"
 #include "Abonnes.h"
 #include "Emprunts.h"
+#include "bugs.h"
+#include "fonctions.h"
+#include "version.h"
+
+
 
 int main(int argc, char **argv)
 {
     int choix;
+
+    journaliser("Ouverture du programme");
     do
     {
         choix = AfficheMenuPrincipal();
@@ -33,7 +40,11 @@ int main(int argc, char **argv)
                 TraitementEmprunts(AfficheMenuEmprunts());
                 break;
             case 4:
+                TraitementBugs(AfficheMenuBugs());
+                break;
+            case 5:
                 printf("Bye bye :)\n");
+                journaliser("Fermeture du programme");
                 return 0;
             default :
                 printf("Ce choix n'existe pas\n");
@@ -41,5 +52,6 @@ int main(int argc, char **argv)
 
         }
     }while(1);
+
     return 0;
 }

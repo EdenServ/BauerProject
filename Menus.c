@@ -21,7 +21,8 @@ int AfficheMenuPrincipal(void)    // Menu Principal Affiché dans main.c : 4 cho
     printf("1-Gestion des livres.\n");
     printf("2-Gestion des abonnés.\n");
     printf("3-Gestion des emprunts.\n");
-    printf("4-Quitter.\n");
+    printf("4-Gestion des Bugs.\n");
+    printf("5-Quitter.\n");
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);
@@ -42,7 +43,7 @@ int AfficheMenuLivres(void)    //Premier sous menu : la gesion des livres 5 choi
     printf("2-Supprimer un livre.\n");
     printf("3-Infos sur un livre.\n");
     printf("4-Lister les livres.\n");
-    printf("4-Retourner au menu principal.\n");
+    printf("5-Retourner au menu principal.\n");
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);
@@ -82,6 +83,42 @@ int AfficheMenuEmprunts(void)
     printf("2-Retour d'un livre.\n");
     printf("3-Infos sur les emprunts.\n");
     printf("4-Retournez au menu Principal.\n");
+
+    printf("\nTapez votre choix:\n");
+    scanf("%d",&choix);
+    return choix;
+}
+
+
+// quatrième menu: La gestion des bugs : .... choix possibles; retourne le choix de l'utilisateur.
+
+
+int AfficheMenuBugs(void)
+{
+    int choix;
+
+    printf("\tGestion des Bugs\n");
+    printf("\n\n##############################\n\n");
+    printf("1-Soumettre un bug à propos de la gestion des livres.\n");
+    printf("2-Soumettre un bug à propos de la gestion des abonnés.\n");
+    printf("3-Soumettre un bug à propos de la gestion des emprunts.\n");
+    printf("4-Soumettre un bug : Autre.\n");
+    printf("5-Retournez au menu Princpal.\n");
+
+    printf("\nTapez votre choix:\n");
+    scanf("%d",&choix);
+    return choix;
+}
+
+int AfficheMenuSeverty(void)
+{
+    int choix;
+
+    printf("\tQuel est le degré du bug ?\n");
+    printf("1-Amélioration.\n");
+    printf("2-Normal.\n");
+    printf("3-Crituque.\n");
+    printf("4-Retournez au menu Princpal.\n");
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);

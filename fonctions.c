@@ -26,12 +26,12 @@ unsigned long taille_fichier(FILE *f)
 }
 
 
-int supprimer_ligne(unsigned int ligne,size_t taille, FILE *f)
+int supprimer_ligne(unsigned int ligne,size_t taille, FILE *f, int m)
 {
     char p[taille];
     FILE *f1 = NULL;
 
-    f1 = fopen(TEMP_F,"w+");
+    f1 = fopen(TEMP_FILE,"w+");
     if(f1 != NULL)
     {
         copie_fichier(f,f1);
@@ -42,9 +42,9 @@ int supprimer_ligne(unsigned int ligne,size_t taille, FILE *f)
             fwrite(p,taille,1,f);
         }
         fputc(EOF,f);
-        reordonner_selon_id(f,1);
+        reordonner_selon_id(f,m);
         fclose(f1);
-        remove(TEMP_F);
+        remove(TEMP_FILE);
         return 0;
     }else
     {
@@ -107,7 +107,7 @@ void reordonner_selon_id(FILE *f, int i)
             fread(&abonne1,sizeof(ABONNE),1,f);
             while(fread(&abonne2,sizeof(ABONNE),1,f)!=0)
             {
-                if(livre1.id-livre2.id!=1)
+                if(abonne1.id-livre2.id!=1)
                 {
                     r = 1;
                     break;
@@ -124,7 +124,7 @@ void reordonner_selon_id(FILE *f, int i)
                     fseek(f,-sizeof(ABONNE),SEEK_CUR);
                     abonne2.id--;
                     fwrite(&abonne2,sizeof(ABONNE),1,f);
-                }while(fread(&abonne2,sizeof(LIVRE),1,f)!=0);
+                }while(fread(&abonne2,sizeof(ABONNE),1,f)!=0);
 
             }
             break;
@@ -164,9 +164,9 @@ void lister_fichier(FILE *f, int i)
             break;
         case 2:
             j=0;
-            while(fread(&a,sizeof(a),1,f)!=0)
+            while(fread(&a,sizeof(ABONNE),1,f)!=0)
             {
-                printf("%d %s %s\n",a.id,a.nom,a.prenom);
+                printf("%d %s %s %d %s %d %s\n",a.id,a.nom,a.prenom,a.cin,a.email,a.telephone,ctime(&a.date));
                 j++;
                 if(j%10 == 0)
                 {
@@ -185,5 +185,23 @@ void lister_fichier(FILE *f, int i)
     }
 
 
+
+}
+
+void journaliser(char *s)
+{
+    time_t temps;
+    char date[24];
+    FILE *f=NULL;
+
+    time(&temps);
+    sprintf(date,"%.24s",ctime(&temps));
+    f = fopen(LOG_FILE,"a");
+    if(f != NULL)
+    {
+        fprintf(f,"[%s] %s\n",date,s);
+        fclose(f);
+    }else
+        printf("Erreur lors de l'ouverture du fichier journal\n");
 
 }
