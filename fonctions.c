@@ -26,24 +26,32 @@ unsigned long taille_fichier(FILE *f)
 }
 
 
-int supprimer_ligne(unsigned int ligne,size_t taille, FILE *f, int m)
+int supprimer_ligne(unsigned int ligne,size_t taille, char *nomFichier, int m)
 {
     char p[taille];
-    FILE *f1 = NULL;
-
-    f1 = fopen(TEMP_FILE,"w+");
-    if(f1 != NULL)
+    FILE *f = NULL,*f1 = NULL;
+    int i=1;
+    f = fopen(nomFichier,"rb");
+    f1 = fopen(TEMP_FILE,"wb+");
+    if(f1 != NULL && f != NULL)
     {
-        copie_fichier(f,f1);
-        fseek(f,taille*(ligne-1),SEEK_SET);
-        fseek(f1,taille*ligne,SEEK_SET);
-        while(fread(p,taille,1,f1)!=0)
+        copie_fichier(f,f1);     // copier f dans le fichier temporaire f1
+        fseek(f1,0,SEEK_SET);
+        fclose(f);
+        f = fopen(nomFichier,"wb+");
+        if(f != NULL)
         {
-            fwrite(p,taille,1,f);
-        }
-        fputc(EOF,f);
+            while(fread(p,taille,1,f1)!=0)
+            {
+                if(i!=ligne)
+                    fwrite(p,taille,1,f);
+                i++;
+                }
+        //fputc(EOF,f);
         reordonner_selon_id(f,m);
+        fclose(f);
         fclose(f1);
+        }
         remove(TEMP_FILE);
         return 0;
     }else
@@ -78,9 +86,11 @@ void reordonner_selon_id(FILE *f, int i)
     switch(i)
     {
         case 1: // réordonner la base de donnée des livres selong l'id
+            livre2.id=0;
             fread(&livre1,sizeof(LIVRE),1,f);
             while(fread(&livre2,sizeof(LIVRE),1,f)!=0)
             {
+
                 if(livre1.id-livre2.id!=1)
                 {
                     r = 1;
@@ -100,14 +110,21 @@ void reordonner_selon_id(FILE *f, int i)
                     fwrite(&livre2,sizeof(LIVRE),1,f);
                 }while(fread(&livre2,sizeof(LIVRE),1,f)!=0);
 
+            }else if(livre2.id == 0)  // au cas où il n'y a qu'une seule ligne :
+            {
+                fseek(f,-sizeof(LIVRE),SEEK_CUR);
+                   livre1.id--;
+                   fwrite(&livre1,sizeof(LIVRE),1,f);
+
             }
             break;
         case 2: // réordonner la base de donnée des abonnés selon l'id
 
+            abonne2.id=0;
             fread(&abonne1,sizeof(ABONNE),1,f);
             while(fread(&abonne2,sizeof(ABONNE),1,f)!=0)
             {
-                if(abonne1.id-livre2.id!=1)
+                if(abonne1.id-abonne2.id!=1)  // on vérifie que c'est bien ordonné sinon on sort de la boucle et on corrige
                 {
                     r = 1;
                     break;
@@ -116,6 +133,7 @@ void reordonner_selon_id(FILE *f, int i)
                 fread(&abonne1,sizeof(ABONNE),1,f);
 
             }
+
 
             if(r)
             {
@@ -126,6 +144,11 @@ void reordonner_selon_id(FILE *f, int i)
                     fwrite(&abonne2,sizeof(ABONNE),1,f);
                 }while(fread(&abonne2,sizeof(ABONNE),1,f)!=0);
 
+            }else if( abonne2.id ==0)
+            {
+                   fseek(f,-sizeof(ABONNE),SEEK_CUR);
+                   abonne1.id--;
+                   fwrite(&abonne1,sizeof(ABONNE),1,f);
             }
             break;
 

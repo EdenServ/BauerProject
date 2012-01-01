@@ -86,13 +86,14 @@ void SupprimerAbonne(void)
     printf("Donner l'id de l'abonné à effacer de la base de donnée:\n");
     scanf("%u",&id);
 
-    fp = fopen(DB_ABONNE,"rb+");
+    fp = fopen(DB_ABONNE,"rb");
     if(fp != NULL)
     {
         taille = taille_fichier(fp);
+        fclose(fp);
         if(taille>= sizeof(ABONNE)*id)
         {
-            if(!supprimer_ligne(id,sizeof(ABONNE),fp,2))
+            if(!supprimer_ligne(id,sizeof(ABONNE),DB_ABONNE,2))
             {
                 printf("Livre supprimé avec succès !\n");
             }

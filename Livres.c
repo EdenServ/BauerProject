@@ -86,13 +86,14 @@ void SupprimerLivre(void)
     printf("Donner l'id du livre à effacer de la base de donnée:\n");
     scanf("%u",&id);
 
-    fp = fopen(DB_LIVRE,"rb+");
+    fp = fopen(DB_LIVRE,"rb");
     if(fp != NULL)
     {
         taille = taille_fichier(fp);
+        fclose(fp);
         if(taille>= sizeof(LIVRE)*id)
         {
-            if(!supprimer_ligne(id,sizeof(LIVRE),fp,1))
+            if(!supprimer_ligne(id,sizeof(LIVRE),DB_LIVRE,1))
             {
                 printf("Livre supprimé avec succès !\n");
             }

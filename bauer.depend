@@ -18,11 +18,11 @@
 	"Menus.h"
 	"Livres.h"
 
-1325168359 source:/home/rednaks/BauerProject/Livres.c
+1325421297 source:/home/rednaks/BauerProject/Livres.c
 	"Livres.h"
 	"fonctions.h"
 
-1324911546 /home/rednaks/BauerProject/Livres.h
+1325430926 /home/rednaks/BauerProject/Livres.h
 	<stdio.h>
 
 1325182203 source:/home/rednaks/BauerProject/Menus.c
@@ -43,11 +43,11 @@
 	"fonctions.h"
 	"version.h"
 
-1325167829 /home/rednaks/BauerProject/Abonnes.h
+1325430910 /home/rednaks/BauerProject/Abonnes.h
 	<stdio.h>
 	<time.h>
 
-1325168356 source:/home/rednaks/BauerProject/Abonnes.c
+1325421305 source:/home/rednaks/BauerProject/Abonnes.c
 	"Abonnes.h"
 	"fonctions.h"
 
@@ -57,13 +57,14 @@
 
 1324899900 /home/rednaks/BauerProject/Emprunts.h
 
-1325168362 source:/home/rednaks/BauerProject/fonctions.c
+1325432214 source:/home/rednaks/BauerProject/fonctions.c
 	"fonctions.h"
 	"Abonnes.h"
 	"Livres.h"
 
-1325182051 /home/rednaks/BauerProject/fonctions.h
+1325421131 /home/rednaks/BauerProject/fonctions.h
 	<stdio.h>
+	<stdio_ext.h>
 	<string.h>
 	<time.h>
 
