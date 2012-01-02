@@ -4,7 +4,7 @@
     Nom de code : BauerProject
     Codé par  : Skander Ben Mahmoud et Mones Ben Jmâa.
     Fichier courant : Abonnes.h
-    Déscription :
+    Déscription : Les prototypes de fonctions, Maccros et définition des structures concernant la gesiont des abonnés.
 
     */
 
@@ -30,3 +30,4 @@ void AjouterAbonne(void);
 void SupprimerAbonne(void);
 void InfosAbonnes(void);
 void ListerAbonnes(void);
+void MiseAJourAbonnee(void);

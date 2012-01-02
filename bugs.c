@@ -4,13 +4,14 @@
     Nom de code : BauerProject
     Codé par  : Skander Ben Mahmoud et Mones Ben Jmâa.
     Fichier courant : bugs.c
-    Déscription :
+    Déscription : l'implémentation des fonctions d'intéraction avec bugzilla
 
     */
 
 
 #include "bugs.h"
 #include "Menus.h"
+#include "fonctions.h"
 
 
 
@@ -37,7 +38,7 @@ void TraitementBugs(int choix)
             printf("Le choix que vous avez sais n'exite pas");
     }
 
-
+    PAUSE
 
 }
 

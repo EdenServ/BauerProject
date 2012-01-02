@@ -4,7 +4,7 @@
     Nom de code : BauerProject
     Codé par  : Skander Ben Mahmoud et Mones Ben Jmâa.
     Fichier courant : Livres.c
-    Déscription : Dans ce fichier seront déclaré les fonctions de la gestion des livres.
+    Déscription : Dans ce fichier ont été implémenté les fonctions de la gestion des livres.
 
     */
 
@@ -35,7 +35,9 @@ void TraitementLivre(int choix)
         default :
             printf("Ce choix n'existe pas\n");
 
-    }
+     }
+
+     PAUSE
 }
 
 void AjouterLivre(void)
@@ -110,6 +112,29 @@ void SupprimerLivre(void)
 
 void InfosLivre(void)
 {
+    FILE *f = NULL;
+    LIVRE l;
+    int id;
+    char isbn[sizeof(l.ISBN)];
+
+
+    f = fopen(DB_LIVRE,"rb");
+    if(f != NULL)
+    {
+        printf("Donner l'id ou l'isbn du livre à rechercher:\n");
+        printf("l'ID (sinon zéro): ");
+        scanf("%d",&id);
+        printf("l'ISBN du livre (zéro sinon): ");
+        scanf("%s",isbn);
+
+        while(fread(&l,sizeof(LIVRE),1,f)!=0)
+        {
+            if(l.id == id || strcmp(l.ISBN,isbn)==0)
+                printf("%d %s  %s %d\n",l.id,l.titre,l.ISBN,l.quantity);
+        }
+
+
+    }
 
 
 

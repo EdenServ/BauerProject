@@ -4,7 +4,7 @@
     Nom de code : BauerProject
     Codé par  : Skander Ben Mahmoud et Mones Ben Jmâa.
     Fichier courant : bugs.h
-    Déscription :
+    Déscription : Toutes les information necessaire au bon fonctionnement de ce module et son interaction avec bugzilla
 
     */
 

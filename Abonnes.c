@@ -4,7 +4,7 @@
     Nom de code : BauerProject
     Codé par  : Skander Ben Mahmoud et Mones Ben Jmâa.
     Fichier courant : Abonnes.c
-    Déscription : Les prototypes de fonctions, Maccros et définition des structures relatives la gestion des Abonnés.
+    Déscription : L'impémentation des fonctions relatives la gestion des Abonnés.
 
     */
 
@@ -27,13 +27,18 @@ void TraitementAbonnes(int choix)
             InfosAbonnes();
             break;
         case 4:
-            ListerAbonnes();
+            MiseAJourAbonnee();
             break;
         case 5:
+            ListerAbonnes();
+            break;
+        case 6:
             break;
         default :
             printf("Ce choix n'existe pas");
     }
+
+    PAUSE
 }
 
 
@@ -67,7 +72,7 @@ ABONNE abonne,aux;
         scanf("%s",abonne.email);
         time(&abonne.date);
         fwrite(&abonne,sizeof(abonne),1,fp);   // ecriture binaire
-        printf("Livre ajouté avec succès\n!");
+        printf("Abonné ajouté avec succès\n!");
         fclose(fp);
     }else
     {
@@ -95,7 +100,7 @@ void SupprimerAbonne(void)
         {
             if(!supprimer_ligne(id,sizeof(ABONNE),DB_ABONNE,2))
             {
-                printf("Livre supprimé avec succès !\n");
+                printf("Abonné supprimé avec succès !\n");
             }
             else
                 printf("Erreur lors de la suppression de l'abonnée !\n");
@@ -110,6 +115,30 @@ void SupprimerAbonne(void)
 
 void InfosAbonnes(void)
 {
+    FILE *f = NULL;
+    ABONNE a;
+    int id,cin;
+
+
+    f = fopen(DB_ABONNE,"rb");
+    if(f != NULL)
+    {
+        printf("Donner l'id ou le numéro de CIN de l'abonné à rechercher:\n");
+        printf("l'ID (sinon zéro): ");
+        scanf("%d",&id);
+        printf("l'CIN de l'abonné (zéro sinon): ");
+        scanf("%d",&cin);
+
+        while(fread(&a,sizeof(ABONNE),1,f)!=0)
+        {
+            if(a.id == id || a.cin == cin)
+                printf("%d %s  %s %d %d %s %s\n",a.id,a.nom,a.prenom,a.cin,a.telephone,a.email,ctime(&a.date));
+        }
+    }else
+    {
+        printf("Problème d'accès à la base de donnée.\n");
+    }
+
 
 
 }
@@ -125,6 +154,43 @@ FILE *f = NULL;
         lister_fichier(f,2); //  2 c'est pour les abonnés !
         fclose(f);
     }else
-        printf("Erreur lors de l'ouverture de la base de donnée des livres !\n");
+        printf("Erreur lors de l'ouverture de la base de donnée des abonnés !\n");
 
+}
+
+void MiseAJourAbonnee(void)    // cette fonction met à jour un abonnée en cas de renouvellement d'abonnement.
+{
+    FILE *f = NULL;
+    int id = 0,d=0;
+    ABONNE a;
+    //struct tm *t,*t1;
+    time_t now;
+    f = fopen(DB_ABONNE,"rb+");
+    if(f != NULL)
+    {
+        printf("Donner l'identifiant de l'abonné :");
+        scanf("%d",&id);
+        d=taille_fichier(f)-id*sizeof(ABONNE);
+        if(d<0)
+        {
+            printf("Aucun abonné avec cet id.\n");
+        }else
+        {
+            fseek(f,sizeof(ABONNE)*(id-1),SEEK_SET);
+            fread(&a,sizeof(ABONNE),1,f);
+            fseek(f,-sizeof(ABONNE),SEEK_CUR);
+            time(&now);
+            if(difftime(now,a.date) <= ANNEE_SEC)
+            {
+                printf("L'abonnement n'est pas encore fini !\n");
+            }else
+            {
+                    time(&a.date);
+                    fwrite(&a,sizeof(ABONNE),1,f);
+                    printf("Abonnement mis à jour.\n");
+            }
+        }
+        fclose(f);
+    }else
+        printf("Erreur lors de l'ouverture de la base de donnée des abonnés");
 }

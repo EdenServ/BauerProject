@@ -12,6 +12,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#if defined (WIN32)             // Nettoyage de l'écran lors du passage d'un menu à l'autre selon l'os
+    #define CLEAR_SCREEN system("cls");
+#elif defined (linux)
+    #define CLEAR_SCREEN system("clear");
+#endif
+
+
 int AfficheMenuPrincipal(void);
 int AfficheMenuLivres(void);
 int AfficheMenuAbonnes(void);

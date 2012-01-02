@@ -16,6 +16,9 @@
 int AfficheMenuPrincipal(void)    // Menu Principal Affiché dans main.c : 4 choix possibles
 {
     int choix;
+
+    CLEAR_SCREEN
+
     printf("\t*** Gestion d'une bibliothèque ***\n");
     printf("\n\n##############################\n\n");
     printf("1-Gestion des livres.\n");
@@ -36,7 +39,9 @@ int AfficheMenuPrincipal(void)    // Menu Principal Affiché dans main.c : 4 cho
 int AfficheMenuLivres(void)    //Premier sous menu : la gesion des livres 5 choix possibles; la valeur de retour est le choix de l'utilisateur
 {
     int choix;
-    system("clear");
+
+    CLEAR_SCREEN // on efface l'écran avant l'affichage du nouveau menu
+
     printf("\tGestion des livres\n");
     printf("\n\n##############################\n\n");
     printf("1-Ajouter un livre.\n");
@@ -56,13 +61,17 @@ int AfficheMenuLivres(void)    //Premier sous menu : la gesion des livres 5 choi
 int AfficheMenuAbonnes(void)
 {
     int choix;
+
+    CLEAR_SCREEN
+
     printf("\tGestion des Abonnés\n");
     printf("\n\n##############################\n\n");
     printf("1-Ajouter un abonné.\n");
     printf("2-Supprimer un abonné.\n");
     printf("3-Infos sur un abonné.\n");
-    printf("4-Lister les abonnés.\n");
-    printf("5-Retourner au menu principal.\n");
+    printf("4-Mettre à jour un abonné.\n");
+    printf("5-Lister les abonnés.\n");
+    printf("6-Retourner au menu principal.\n");
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);
@@ -76,6 +85,8 @@ int AfficheMenuAbonnes(void)
 int AfficheMenuEmprunts(void)
 {
     int choix;
+
+    CLEAR_SCREEN
 
     printf("\tGestion des Emprunts\n");
     printf("\n\n##############################\n\n");
@@ -97,6 +108,8 @@ int AfficheMenuBugs(void)
 {
     int choix;
 
+    CLEAR_SCREEN
+
     printf("\tGestion des Bugs\n");
     printf("\n\n##############################\n\n");
     printf("1-Soumettre un bug à propos de la gestion des livres.\n");
@@ -113,6 +126,8 @@ int AfficheMenuBugs(void)
 int AfficheMenuSeverty(void)
 {
     int choix;
+
+    CLEAR_SCREEN
 
     printf("\tQuel est le degré du bug ?\n");
     printf("1-Amélioration.\n");
