@@ -32,7 +32,7 @@ int main(int argc, char **argv)
         switch(choix)
         {
             case 1:
-                TraitementLivre(AfficheMenuLivres());  // Déclaré dans  Livres.h
+                TraitementLivres(AfficheMenuLivres());  // Déclaré dans  Livres.h
                 break;
             case 2:
                 TraitementAbonnes(AfficheMenuAbonnes());

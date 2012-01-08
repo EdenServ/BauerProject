@@ -9,6 +9,13 @@
     */
 
 
+/* TODO :
+
+    - Ajouter plus d'informations concernant les abonnés
+    - Controle saisie : numéro de téléphone, cin
+
+
+*/
 #include "Abonnes.h"
 #include "fonctions.h"
 
@@ -58,16 +65,19 @@ ABONNE abonne,aux;
         }
         else
             abonne.id=1;
+            abonne.emprunts[0]=0;
+            abonne.emprunts[1]=0;
 
-        //printf("%d \n",abonne.id);
+        printf("Identifiant : %d \n",abonne.id);
+        while(getchar()!='\n');
         printf("Donner le nom de l'abonné\n");
-        scanf("%s",abonne.nom);
+        lire_espace(abonne.nom);
         printf("Donner le prénom de l'abonné\n");
-        scanf("%s",abonne.prenom);
+        lire_espace(abonne.prenom);
         printf("Donner le num de CIN de l'abonné\n");
-        scanf("%d",&abonne.cin);
+        lire_chiffre(&abonne.cin);
         printf("Donner le num de téléphone de l'abonné\n");
-        scanf("%d",&abonne.telephone);
+        lire_chiffre(&abonne.telephone);
         printf("Donner l'email de l'abonné\n");
         scanf("%s",abonne.email);
         time(&abonne.date);
@@ -106,6 +116,7 @@ void SupprimerAbonne(void)
                 printf("Erreur lors de la suppression de l'abonnée !\n");
         }else
             printf("Cet abonné n'existe pas dans la base de donnée.\n");
+        //fclose(fp);
     }else
         printf("Erreur d'ouverture du fichier.\n");
 
@@ -132,8 +143,9 @@ void InfosAbonnes(void)
         while(fread(&a,sizeof(ABONNE),1,f)!=0)
         {
             if(a.id == id || a.cin == cin)
-                printf("%d %s  %s %d %d %s %s\n",a.id,a.nom,a.prenom,a.cin,a.telephone,a.email,ctime(&a.date));
+                printf("%d %s  %s %d %d %s %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.telephone,a.email,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
         }
+        fclose(f);
     }else
     {
         printf("Problème d'accès à la base de donnée.\n");
@@ -146,12 +158,18 @@ void InfosAbonnes(void)
 
 void ListerAbonnes(void)
 {
-FILE *f = NULL;
+    FILE *f = NULL;
+
 
     f = fopen(DB_ABONNE,"rb");
     if(f != NULL)
     {
-        lister_fichier(f,2); //  2 c'est pour les abonnés !
+
+
+        if(taille_fichier(f))
+            lister_fichier(f,2); //  2 c'est pour les abonnés !
+        else
+            printf("Fichier vide\n");
         fclose(f);
     }else
         printf("Erreur lors de l'ouverture de la base de donnée des abonnés !\n");

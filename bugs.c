@@ -51,19 +51,20 @@ int bugzilla_connect(void)   // connexion à bugzilla
     printf("%d",sizeof(BUGZILLA_URL)+sizeof(BUGZILLA_INDEX));
     printf("%d",sizeof(BUGZILLA_LOGIN)+sizeof(BUGZILLA_PASSW)+sizeof(BUGZILLA_GOAHEAD));
 
-    printf("Trying to connect ...\n");
+    printf("Connexion en cours...");
     session = curl_easy_init();
     if(session)
     {
         sprintf(url,"%s%s",BUGZILLA_URL,BUGZILLA_INDEX);  // On colle les mouceaux pour définir l'url à curl
         sprintf(data,"%s&%s&%s",BUGZILLA_LOGIN,BUGZILLA_PASSW,BUGZILLA_GOAHEAD);  // les donnée post regroupée
         curl_easy_setopt(session,CURLOPT_URL,url);
-        curl_easy_setopt(session,CURLOPT_VERBOSE,1);
+        //curl_easy_setopt(session,CURLOPT_VERBOSE,1);
+        curl_easy_setopt(session,CURLOPT_WRITEFUNCTION,wrfunc);
         curl_easy_setopt(session,CURLOPT_POSTFIELDS,data);
         curl_easy_setopt(session,CURLOPT_COOKIEJAR,BUGZILLA_COOKIE);
         curl_easy_perform(session);
         curl_easy_cleanup(session);
-        printf("Connected !\n");
+        printf("Connecté !\n");
         return 0;
     }else
     {
@@ -105,7 +106,7 @@ void bugzilla_push(char *data)
             i++;
         }while(c!='\n');
         desc[i-1]='\0';
-        printf("%s\n",desc);
+        //printf("%s\n",desc);
 
         printf("%d",sizeof(BUGZILLA_PRODUCT)+sizeof(data)+sizeof(BUGZILLA_PLATFORM)+sizeof(BUGZILLA_OS)+sizeof(BUGZILLA_STATUS)+sizeof(BUGZILLA_ASSIGNEDTO)+sizeof(titre)+sizeof(BUGZILLA_COMMENT)+sizeof(desc));
         sprintf(aux,"%s&%s&%s&%s&%s&%s&%s%s&%s%s&%s%s",BUGZILLA_PRODUCT,data,BUGZILLA_PLATFORM,BUGZILLA_OS,BUGZILLA_STATUS,BUGZILLA_ASSIGNEDTO,BUGZILLA_SHORT,titre,BUGZILLA_COMMENT,desc,BUGZILLA_VERSION,VERSION);
@@ -116,9 +117,11 @@ void bugzilla_push(char *data)
             sprintf(url,"%s%s",BUGZILLA_URL,BUGZILLA_BUGPOST);
             curl_easy_setopt(session,CURLOPT_URL,url);
             curl_easy_setopt(session,CURLOPT_POSTFIELDS,aux);
+            curl_easy_setopt(session,CURLOPT_WRITEFUNCTION,wrfunc);
             curl_easy_setopt(session,CURLOPT_COOKIEFILE,BUGZILLA_COOKIE);
             curl_easy_perform(session);
             curl_easy_cleanup(session);
+            printf("Pushed !");
 
         }else
             printf("Error while posting the Bug ! Please try later");
@@ -242,7 +245,13 @@ void SoumettreBugAutre(int choix)
     {
         bugzilla_push(data);
     }
-
-
-
 }
+
+
+size_t wrfunc(void *ptr, size_t size, size_t nmem, void *data)
+{
+    //printf("...\n");
+    return size*nmem;
+}
+
+

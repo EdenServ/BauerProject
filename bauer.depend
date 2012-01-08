@@ -18,21 +18,21 @@
 	"Menus.h"
 	"Livres.h"
 
-1325471236 source:/home/rednaks/BauerProject/Livres.c
+1326047808 source:/home/rednaks/BauerProject/Livres.c
 	"Livres.h"
 	"fonctions.h"
 
-1325430926 /home/rednaks/BauerProject/Livres.h
+1326037684 /home/rednaks/BauerProject/Livres.h
 	<stdio.h>
 
-1325470925 source:/home/rednaks/BauerProject/Menus.c
+1325844960 source:/home/rednaks/BauerProject/Menus.c
 	"Menus.h"
 
-1325470896 /home/rednaks/BauerProject/Menus.h
+1325788348 /home/rednaks/BauerProject/Menus.h
 	<stdio.h>
 	<stdlib.h>
 
-1325470659 source:/home/rednaks/BauerProject/main.c
+1325848370 source:/home/rednaks/BauerProject/main.c
 	<stdio.h>
 	<stdlib.h>
 	"Menus.h"
@@ -43,43 +43,56 @@
 	"fonctions.h"
 	"version.h"
 
-1325464814 /home/rednaks/BauerProject/Abonnes.h
+1325789802 /home/rednaks/BauerProject/Abonnes.h
 	<stdio.h>
 	<time.h>
 
-1325471236 source:/home/rednaks/BauerProject/Abonnes.c
+1326045167 source:/home/rednaks/BauerProject/Abonnes.c
 	"Abonnes.h"
 	"fonctions.h"
 
-1325471366 source:/home/rednaks/BauerProject/Emptrunts.c
+1326055246 source:/home/rednaks/BauerProject/Emptrunts.c
 	"Emprunts.h"
-	<stdio.h>
-
-1325471364 /home/rednaks/BauerProject/Emprunts.h
-	<stdio.h>
-	"fonctions.h"
-
-1325465078 source:/home/rednaks/BauerProject/fonctions.c
 	"fonctions.h"
 	"Abonnes.h"
 	"Livres.h"
 
-1325471427 /home/rednaks/BauerProject/fonctions.h
+1326055216 /home/rednaks/BauerProject/Emprunts.h
 	<stdio.h>
-	<stdio_ext.h>
+	<time.h>
+	"fonctions.h"
+	"Abonnes.h"
+	"Livres.h"
+
+1326045361 source:/home/rednaks/BauerProject/fonctions.c
+	"fonctions.h"
+	"Abonnes.h"
+	"Livres.h"
+
+1326045129 /home/rednaks/BauerProject/fonctions.h
+	<stdio.h>
+	<stdlib.h>
 	<string.h>
 	<time.h>
 
-1325471400 source:/home/rednaks/BauerProject/bugs.c
+1325807463 source:/home/rednaks/BauerProject/bugs.c
 	"bugs.h"
 	"Menus.h"
 	"fonctions.h"
 
-1325464979 /home/rednaks/BauerProject/bugs.h
+1325807183 /home/rednaks/BauerProject/bugs.h
 	<stdio.h>
 	<string.h>
 	<curl/curl.h>
 	"version.h"
 
 1325182982 /home/rednaks/BauerProject/version.h
+
+1325557708 /home/rednaks/BauerProject/Abonnes.c
+	"Abonnes.h"
+	"fonctions.h"
+
+1325557755 /home/rednaks/BauerProject/Livres.c
+	"Livres.h"
+	"fonctions.h"
 

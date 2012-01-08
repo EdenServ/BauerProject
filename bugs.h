@@ -8,6 +8,9 @@
 
     */
 
+#ifndef H_BUGS
+#define H_BUGS
+
 #include <stdio.h>
 #include <string.h>
 #include <curl/curl.h>  // ;)
@@ -57,7 +60,7 @@
 // BUG_COMPONENT
 
 #define BUGZILLA_COMPONENT_LIVRE "Gestion des livres"
-#define BUGZILLA_COMPONENT_ABONNE "Gestionn des abonnés"
+#define BUGZILLA_COMPONENT_ABONNE "Gestion des abonnés"
 #define BUGZILLA_COMPONENT_EMRUNTS "Gestion des emprunts"
 #define BUGZILLA_COMPONENT_AUTRE "Autre"
 
@@ -73,5 +76,6 @@ void SoumettreBugLivre(int);
 void SoumettreBugAbonne(int);
 void SoumettreBugEmprunts(int);
 void SoumettreBugAutre(int);
+size_t wrfunc(void *ptr,size_t size, size_t nmem, void *data);
 
-
+#endif

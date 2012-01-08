@@ -19,7 +19,7 @@ int AfficheMenuPrincipal(void)    // Menu Principal Affiché dans main.c : 4 cho
 
     CLEAR_SCREEN
 
-    printf("\t*** Gestion d'une bibliothèque ***\n");
+    printf("\t\033[94m*** Gestion d'une bibliothèque ***\033[0m\n");
     printf("\n\n##############################\n\n");
     printf("1-Gestion des livres.\n");
     printf("2-Gestion des abonnés.\n");

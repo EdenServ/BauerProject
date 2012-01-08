@@ -16,6 +16,7 @@
 
 
 
+
 unsigned long taille_fichier(FILE *f)
 {
     unsigned long taille = 0;
@@ -87,68 +88,72 @@ void reordonner_selon_id(FILE *f, int i)
     {
         case 1: // réordonner la base de donnée des livres selong l'id
             livre2.id=0;
-            fread(&livre1,sizeof(LIVRE),1,f);
-            while(fread(&livre2,sizeof(LIVRE),1,f)!=0)
+            if(fread(&livre1,sizeof(LIVRE),1,f)!=0)
             {
-
-                if(livre1.id-livre2.id!=1)
+                while(fread(&livre2,sizeof(LIVRE),1,f)!=0)
                 {
-                    r = 1;
-                    break;
+
+                    if(livre1.id-livre2.id!=1)
+                    {
+                        r = 1;
+                        break;
+                    }
+
+                    fread(&livre1,sizeof(LIVRE),1,f);
+
                 }
 
-                fread(&livre1,sizeof(LIVRE),1,f);
+                if(r)
+                {
+                    do
+                    {
+                        fseek(f,-sizeof(LIVRE),SEEK_CUR);
+                        livre2.id--;
+                        fwrite(&livre2,sizeof(LIVRE),1,f);
+                    }while(fread(&livre2,sizeof(LIVRE),1,f)!=0);
 
-            }
-
-            if(r)
-            {
-                do
+                }else if(livre2.id == 0)  // au cas où il n'y a qu'une seule ligne :
                 {
                     fseek(f,-sizeof(LIVRE),SEEK_CUR);
-                    livre2.id--;
-                    fwrite(&livre2,sizeof(LIVRE),1,f);
-                }while(fread(&livre2,sizeof(LIVRE),1,f)!=0);
+                    livre1.id--;
+                    fwrite(&livre1,sizeof(LIVRE),1,f);
 
-            }else if(livre2.id == 0)  // au cas où il n'y a qu'une seule ligne :
-            {
-                fseek(f,-sizeof(LIVRE),SEEK_CUR);
-                   livre1.id--;
-                   fwrite(&livre1,sizeof(LIVRE),1,f);
-
+                }
             }
-            break;
+                break;
         case 2: // réordonner la base de donnée des abonnés selon l'id
 
             abonne2.id=0;
-            fread(&abonne1,sizeof(ABONNE),1,f);
-            while(fread(&abonne2,sizeof(ABONNE),1,f)!=0)
+            if(fread(&abonne1,sizeof(ABONNE),1,f)!=0)
             {
-                if(abonne1.id-abonne2.id!=1)  // on vérifie que c'est bien ordonné sinon on sort de la boucle et on corrige
+                while(fread(&abonne2,sizeof(ABONNE),1,f)!=0)
                 {
-                    r = 1;
-                    break;
+                    if(abonne1.id-abonne2.id!=1)  // on vérifie que c'est bien ordonné sinon on sort de la boucle et on corrige
+                    {
+                        r = 1;
+                        break;
+                    }
+
+                    fread(&abonne1,sizeof(ABONNE),1,f);
+
                 }
 
-                fread(&abonne1,sizeof(ABONNE),1,f);
 
-            }
+                if(r)
+                {
+                    do
+                    {
+                        fseek(f,-sizeof(ABONNE),SEEK_CUR);
+                        abonne2.id--;
+                        fwrite(&abonne2,sizeof(ABONNE),1,f);
+                    }while(fread(&abonne2,sizeof(ABONNE),1,f)!=0);
 
-
-            if(r)
-            {
-                do
+                }else if( abonne2.id ==0)
                 {
                     fseek(f,-sizeof(ABONNE),SEEK_CUR);
-                    abonne2.id--;
-                    fwrite(&abonne2,sizeof(ABONNE),1,f);
-                }while(fread(&abonne2,sizeof(ABONNE),1,f)!=0);
-
-            }else if( abonne2.id ==0)
-            {
-                   fseek(f,-sizeof(ABONNE),SEEK_CUR);
-                   abonne1.id--;
-                   fwrite(&abonne1,sizeof(ABONNE),1,f);
+                    abonne1.id--;
+                    fwrite(&abonne1,sizeof(ABONNE),1,f);
+                }
             }
             break;
 
@@ -169,7 +174,7 @@ void lister_fichier(FILE *f, int i)
         case 1:     //lister la base de donnés des livres
             while(fread(&l,sizeof(l),1,f)!=0)
             {
-                printf("%d %s %s %d\n",l.id,l.titre,l.ISBN,l.quantity);
+                printf("i:%d t:%s a:%s e:%s is:%s q:%d\n",l.id,l.titre,l.auteur,l.edition,l.ISBN,l.quantity);
                 j++;
                 if(j%10 == 0)
                 {
@@ -189,7 +194,7 @@ void lister_fichier(FILE *f, int i)
             j=0;
             while(fread(&a,sizeof(ABONNE),1,f)!=0)
             {
-                printf("%d %s %s %d %s %d %s\n",a.id,a.nom,a.prenom,a.cin,a.email,a.telephone,ctime(&a.date));
+                printf("%d %s %s %d %s %d %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.email,a.telephone,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
                 j++;
                 if(j%10 == 0)
                 {
@@ -226,5 +231,46 @@ void journaliser(char *s)
         fclose(f);
     }else
         printf("Erreur lors de l'ouverture du fichier journal\n");
+
+}
+
+
+void lire_espace(char *s)
+{
+
+    char c;
+    int i=0;
+    do
+    {
+        c=getchar();
+        s[i]=c;
+        i++;
+    }while(c!='\n');
+    s[i-1]='\0';
+}
+
+void lire_chiffre(int *a)
+{
+
+    char e[16],aux[16];
+    int ok=0;
+    do
+    {
+        lire_espace(e);
+        if(e[0]=='0')
+            sprintf(aux,"0%d",atoi(e));
+        else
+            sprintf(aux,"%d",atoi(e));
+
+        if(strcmp(aux,e))
+        {
+            printf("Erreur ! Vous devez entrer un chiffre !\n");
+            ok = 0;
+        }
+        else
+            ok = 1;
+    }while(!ok);
+    *a = atoi(e);
+
 
 }

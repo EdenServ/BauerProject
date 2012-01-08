@@ -9,20 +9,27 @@
     */
 
 
+#ifndef H_LIVRES
+#define H_LIVRES
+
 #include <stdio.h>
 
 #define DB_LIVRE "db/livres.db"    // on définit le nom du fichier où seront mis les informations concernant les livres.
 
 
-typedef struct livre {
+typedef struct {
   int id;
   int quantity;
   char titre[50];
   char ISBN[13];
+  char edition[20];
+  char auteur[20];
 } LIVRE;
 
-void TraitementLivre(int choix);
+void TraitementLivres(int choix);
 void AjouterLivre(void);
 void SupprimerLivre(void);
 void InfosLivre(void);
 void ListerLivres(void);
+
+#endif

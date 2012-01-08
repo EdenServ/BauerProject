@@ -2,42 +2,45 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="Abonnes.c" open="1" top="0" tabpos="7">
-		<Cursor position="802" topLine="23" />
+		<Cursor position="1952" topLine="54" />
 	</File>
 	<File name="Abonnes.h" open="1" top="0" tabpos="8">
-		<Cursor position="292" topLine="0" />
+		<Cursor position="563" topLine="5" />
 	</File>
-	<File name="Emprunts.h" open="1" top="1" tabpos="10">
-		<Cursor position="243" topLine="0" />
+	<File name="Emprunts.h" open="1" top="0" tabpos="10">
+		<Cursor position="913" topLine="15" />
 	</File>
-	<File name="Emptrunts.c" open="1" top="0" tabpos="11">
-		<Cursor position="613" topLine="6" />
+	<File name="Emptrunts.c" open="1" top="1" tabpos="11">
+		<Cursor position="5966" topLine="297" />
 	</File>
 	<File name="Livres.c" open="1" top="0" tabpos="5">
-		<Cursor position="754" topLine="18" />
+		<Cursor position="1810" topLine="59" />
 	</File>
 	<File name="Livres.h" open="1" top="0" tabpos="6">
-		<Cursor position="170" topLine="0" />
+		<Cursor position="597" topLine="0" />
 	</File>
 	<File name="Menus.c" open="1" top="0" tabpos="4">
-		<Cursor position="3373" topLine="47" />
+		<Cursor position="519" topLine="0" />
 	</File>
 	<File name="Menus.h" open="1" top="0" tabpos="9">
-		<Cursor position="485" topLine="0" />
+		<Cursor position="731" topLine="0" />
 	</File>
 	<File name="bugs.c" open="1" top="0" tabpos="13">
-		<Cursor position="849" topLine="21" />
+		<Cursor position="2580" topLine="91" />
 	</File>
 	<File name="bugs.h" open="1" top="0" tabpos="12">
-		<Cursor position="289" topLine="0" />
+		<Cursor position="2166" topLine="0" />
 	</File>
 	<File name="fonctions.c" open="1" top="0" tabpos="3">
-		<Cursor position="224" topLine="108" />
+		<Cursor position="6001" topLine="242" />
 	</File>
 	<File name="fonctions.h" open="1" top="0" tabpos="2">
-		<Cursor position="737" topLine="3" />
+		<Cursor position="356" topLine="0" />
 	</File>
 	<File name="main.c" open="1" top="0" tabpos="1">
-		<Cursor position="501" topLine="12" />
+		<Cursor position="923" topLine="24" />
+	</File>
+	<File name="version.h" open="1" top="0" tabpos="14">
+		<Cursor position="0" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

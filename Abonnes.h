@@ -8,6 +8,9 @@
 
     */
 
+#ifndef H_ABONNES
+#define H_ABONNES
+
 #include <stdio.h>
 #include <time.h>
 
@@ -22,6 +25,7 @@ typedef struct
     int telephone;
     char email[50];
     time_t date;
+    int emprunts[2];
 
 } ABONNE;
 
@@ -31,3 +35,5 @@ void SupprimerAbonne(void);
 void InfosAbonnes(void);
 void ListerAbonnes(void);
 void MiseAJourAbonnee(void);
+
+#endif

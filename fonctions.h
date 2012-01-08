@@ -9,22 +9,29 @@
     */
 
 
+
+#ifndef H_FONCTIONS
+#define H_FONCTIONS
+
 #include <stdio.h>
-#include <stdio_ext.h>
+#include <stdlib.h>
 #include <string.h>
 #include <time.h>
+
 
 #define TEMP_FILE ".tmp/.tmp.db"
 #define LOG_FILE "log/journal.log"
 
-#define ANNEE_SEC 31536000.000     // un année en seconde : 3600*24*365
+
+#define ANNEE_SEC 31536000.000     // un année en seconde : 3600*24*365 . un abonnement n'est valable qu'un an.
+#define DEUX_SEMAINES 1296000.000   // 15 jours en seconde : 3600*24*15   durée maximale d'un emprunt est 15 jours.
 
 
 
 #if defined (WIN32)   // pour marquer une pause après chaque fin de traitement d'un menu
     #define PAUSE system("pause");
 #elif defined (linux)
-    #define PAUSE printf("Appouiez sur une touche pour continuler ...\n");fflush(stdin);getchar();
+    #define PAUSE printf("\nAppouiez sur une touche pour continuler ...\n");while(getchar()!='\n');getchar();
 #endif
 
 
@@ -35,3 +42,8 @@ void copie_fichier(FILE *f1, FILE *f2);
 void reordonner_selon_id(FILE *f, int i);
 void lister_fichier(FILE *f, int i);
 void journaliser(char *s);
+void lire_espace(char *s);  // permet une saisie avec espaces;
+void lire_chiffre(int *a);  // permet un controle au saisie des chiffres;
+
+
+#endif

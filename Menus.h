@@ -9,6 +9,9 @@
     */
 
 
+#ifndef H_MENUS
+#define H_MENUS
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -25,3 +28,5 @@ int AfficheMenuAbonnes(void);
 int AfficheMenuEmprunts(void);
 int AfficheMenuBugs(void);
 int AfficheMenuSeverty(void);
+
+#endif

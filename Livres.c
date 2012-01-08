@@ -8,12 +8,20 @@
 
     */
 
+/* TODO
+
+    - Ajouter plus d'infros dans la strucutre du livre : maison d'édition, auteur
+    - Recherche dans les livres plus précise.
+    - Lecture des titres avec espaces
+
+*/
+
 #include "Livres.h"
 #include "fonctions.h"
 
 
 
-void TraitementLivre(int choix)
+void TraitementLivres(int choix)
 {
 
     switch(choix)
@@ -57,13 +65,18 @@ void AjouterLivre(void)
         else
             livre.id=1;
 
-        printf("%d \n",livre.id);
+        printf("Identifiant : %d \n",livre.id);
+        while(getchar()!='\n');
         printf("Donner le nom du livre\n");
-        scanf("%s",livre.titre);
+        lire_espace(livre.titre);
+        printf("Donner le nom de l'auteur:\n");
+        lire_espace(livre.auteur);
+        printf("Donner la maison d'édition du livre :\n");
+        lire_espace(livre.edition);
         printf("Donner l'ISBN du livre\n");
         scanf("%s",livre.ISBN);
         printf("Donner la quantité de livres\n");
-        scanf("%d",&livre.quantity);
+        lire_chiffre(&livre.quantity);
         fwrite(&livre,sizeof(livre),1,fp);   // ecriture binaire
         printf("Livre ajouté avec succès\n!");
         fclose(fp);
@@ -103,6 +116,7 @@ void SupprimerLivre(void)
                 printf("Erreur lors de la suppression du fichier !\n");
         }else
             printf("Ce livre n'existe pas dans la base de donnée.\n");
+       fclose(fp);
     }else
         printf("Erreur d'ouverture du fichier.\n");
 
@@ -130,10 +144,10 @@ void InfosLivre(void)
         while(fread(&l,sizeof(LIVRE),1,f)!=0)
         {
             if(l.id == id || strcmp(l.ISBN,isbn)==0)
-                printf("%d %s  %s %d\n",l.id,l.titre,l.ISBN,l.quantity);
+                printf("%d %s %s %s %s %d\n",l.id,l.titre,l.auteur,l.edition,l.ISBN,l.quantity);
         }
 
-
+        fclose(f);
     }
 
 
@@ -148,8 +162,10 @@ void ListerLivres(void)
 
     f = fopen(DB_LIVRE,"rb");
     if(f != NULL)
-    {
-        lister_fichier(f,1);
+    {   if(taille_fichier(f))
+            lister_fichier(f,1);
+        else
+            printf("Fichier vide\n");
         fclose(f);
     }else
         printf("Erreur lors de l'ouverture de la base de donnée des livres !\n");
