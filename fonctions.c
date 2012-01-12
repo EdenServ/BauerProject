@@ -257,13 +257,14 @@ void lire_espace(char *s, int size)
 
 void lire_cin(char cin[8])
 {
-    int i=0, ok = 1;
+    int i=0, ok = 1, j=0;;
     char c;
 
     do
     {
-        if(i!=8 || ok == 0)
+        if((i!=8 || ok == 0)&& j !=0)
             printf("CIN invalide !\n");
+        j++;
         i = 0;
         ok = 1;
     do
@@ -282,9 +283,11 @@ void lire_cin(char cin[8])
     }while(c != '\n');
     cin[i] = '\0';
     printf("\nDebug i %d | ok %d\n",i,ok);
-    printf("DEBUG : %s",cin);
+    printf("DEBUG2 : %s",cin);
+    if(i==1 && cin[0] == '0')
+        break;
 
-}while(i!=8 || ok == 0);
+}while(  i!=8 || ok == 0);
 
 }
 
@@ -319,21 +322,23 @@ void lire_email(char email[50])
 
 
     char c;
-    int i=0,k=0,ok = 0;;
+    int i=0,k=0,ok = 1,j=0;
     do
     {
         if(i> 50)
             printf("Erreur de saisie, chaine trop longue\n");
+        printf("DEBUG : k:%d ok:%d j:%d\n",k,ok,j);
         i = 0;
-        if(k != 1 || ok == 0)
+        if((k != 1 || ok == 0)&& j!=0)
             printf("Email invalide !\n");
         k = 0;
+        j++;
         ok = 1;
 
         do
         {
         c=getchar();
-        if(c == '@');
+        if(c == '@')
             k++;
         if (c == ' ')
             ok = 0;

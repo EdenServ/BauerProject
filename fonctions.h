@@ -34,6 +34,8 @@
     #define PAUSE printf("\nAppouiez sur une touche pour continuler ...\n");while(getchar()!='\n');getchar();
 #endif
 
+#define FLUSHH while(getchar()!='\n');
+
 
 
 unsigned long taille_fichier(FILE *f);    // une fonction qui détermine la taille d'un fichier le corps de la fonctio est dans fonctions.c

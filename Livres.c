@@ -66,13 +66,13 @@ void AjouterLivre(void)
             livre.id=1;
 
         printf("Identifiant : %d \n",livre.id);
-        while(getchar()!='\n');
+        FLUSHH
         printf("Donner le nom du livre\n");
         lire_espace(livre.titre,sizeof(livre.titre));
         printf("Donner le nom de l'auteur:\n");
-        lire_espace(livre.auteur,sizeof(livre.titre));
+        lire_espace(livre.auteur,sizeof(livre.auteur));
         printf("Donner la maison d'édition du livre :\n");
-        lire_espace(livre.edition, sizeof(livre.titre));
+        lire_espace(livre.edition, sizeof(livre.edition));
         printf("Donner l'ISBN du livre\n");
         lire_espace(livre.ISBN,sizeof(livre.ISBN));
         printf("Donner la quantité de livres\n");

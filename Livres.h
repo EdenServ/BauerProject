@@ -21,7 +21,7 @@ typedef struct {
   int id;
   int quantity;
   char titre[50];
-  char ISBN[13];
+  char ISBN[17];
   char edition[20];
   char auteur[20];
 } LIVRE;

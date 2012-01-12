@@ -105,6 +105,9 @@ void RetourEmprunts(void)
 
     f = fopen(DB_EMPRUNT,"rb+");
 
+
+
+
     if(f != NULL)
     {
         printf("Donner l'identifiant de l'emprunt\n");
@@ -130,7 +133,8 @@ void RetourEmprunts(void)
 
 
         fclose(f);
-    }
+    }else
+        printf("Erreur lors de l'ouverture de la base de donnée !\n");
 
 
 }

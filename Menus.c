@@ -152,12 +152,12 @@ int AfficheMenuAbonnes(void)
     printf(" %s                           %s\t",UNDL,ENDC_S);
     printf(" %s                           %s\n",UNDL,ENDC_S);
     printf("|%s 3 - Infos sur les abonnés.%s|\t",BOLD,ENDC_S);
-    printf("|%s 4 - Lister les abonnés.   %s|\n",BOLD,ENDC_S);
+    printf("|%s 4 - Mettre à jour abonnés.%s|\n",BOLD,ENDC_S);
     printf("|%s                           %s|\t",UNDL,ENDC_S);
     printf("|%s                           %s|\n",UNDL,ENDC_S);
     printf(" %s                           %s\t",UNDL,ENDC_S);
     printf(" %s                           %s\n",UNDL,ENDC_S);
-    printf("|%s 5 - Mettre à jour abonnés.%s|\t",BOLD,ENDC_S);
+    printf("|%s 5 -  Lister les abonnés.  %s|\t",BOLD,ENDC_S);
     printf("|%s 6 - Menu Principal.       %s|\n",BOLD,ENDC_S);
     printf("|%s                           %s|\t",UNDL,ENDC_S);
     printf("|%s                           %s|\n",UNDL,ENDC_S);

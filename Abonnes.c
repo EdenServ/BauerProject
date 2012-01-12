@@ -76,10 +76,16 @@ ABONNE abonne,aux;
         lire_espace(abonne.prenom,sizeof(abonne.prenom));
         printf("Donner le num de CIN de l'abonné\n");
         lire_cin(abonne.cin);
+        FLUSHH
         printf("Donner le num de téléphone de l'abonné\n");
         lire_chiffre(&abonne.telephone);
         printf("Donner l'email de l'abonné\n");
         lire_email(abonne.email);
+        printf("Donner l'adresse postale :\n");
+        lire_espace(abonne.addresse,sizeof(abonne.addresse));
+
+        printf("%d %s  %s %s %d %s %s %d %d\n",abonne.id,abonne.nom,abonne.prenom,abonne.cin,abonne.telephone,abonne.email,abonne.addresse,abonne.emprunts[0],abonne.emprunts[1]);
+
         time(&abonne.date);
         fwrite(&abonne,sizeof(abonne),1,fp);   // ecriture binaire
         printf("Abonné ajouté avec succès\n!");

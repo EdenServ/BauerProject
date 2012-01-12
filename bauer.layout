@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="Abonnes.c" open="1" top="0" tabpos="8">
-		<Cursor position="4241" topLine="0" />
+	<File name="Abonnes.c" open="1" top="1" tabpos="8">
+		<Cursor position="1794" topLine="66" />
 	</File>
 	<File name="Abonnes.h" open="1" top="0" tabpos="9">
-		<Cursor position="497" topLine="6" />
+		<Cursor position="516" topLine="6" />
 	</File>
 	<File name="Emprunts.h" open="1" top="0" tabpos="10">
-		<Cursor position="913" topLine="15" />
+		<Cursor position="913" topLine="18" />
 	</File>
 	<File name="Emptrunts.c" open="1" top="0" tabpos="11">
-		<Cursor position="6504" topLine="129" />
+		<Cursor position="2099" topLine="108" />
 	</File>
 	<File name="Livres.c" open="1" top="0" tabpos="6">
-		<Cursor position="2028" topLine="107" />
+		<Cursor position="1539" topLine="59" />
 	</File>
 	<File name="Livres.h" open="1" top="0" tabpos="7">
-		<Cursor position="82" topLine="0" />
+		<Cursor position="650" topLine="1" />
 	</File>
 	<File name="Menus.c" open="1" top="0" tabpos="4">
-		<Cursor position="2306" topLine="86" />
+		<Cursor position="5245" topLine="134" />
 	</File>
 	<File name="Menus.h" open="1" top="0" tabpos="5">
-		<Cursor position="804" topLine="0" />
+		<Cursor position="804" topLine="13" />
 	</File>
 	<File name="bugs.c" open="1" top="0" tabpos="13">
 		<Cursor position="2580" topLine="91" />
@@ -31,11 +31,11 @@
 	<File name="bugs.h" open="1" top="0" tabpos="12">
 		<Cursor position="2166" topLine="0" />
 	</File>
-	<File name="fonctions.c" open="1" top="1" tabpos="3">
-		<Cursor position="6247" topLine="261" />
+	<File name="fonctions.c" open="1" top="0" tabpos="3">
+		<Cursor position="6570" topLine="256" />
 	</File>
 	<File name="fonctions.h" open="1" top="0" tabpos="2">
-		<Cursor position="1489" topLine="16" />
+		<Cursor position="1003" topLine="10" />
 	</File>
 	<File name="main.c" open="1" top="0" tabpos="1">
 		<Cursor position="527" topLine="0" />
