@@ -42,8 +42,9 @@ void copie_fichier(FILE *f1, FILE *f2);
 void reordonner_selon_id(FILE *f, int i);
 void lister_fichier(FILE *f, int i);
 void journaliser(char *s);
-void lire_espace(char *s);  // permet une saisie avec espaces;
+void lire_espace(char *s, int size);  // permet une saisie avec espaces;
 void lire_chiffre(int *a);  // permet un controle au saisie des chiffres;
-
+void lire_cin(char cin[8]);
+void lire_email(char email[50]);
 
 #endif

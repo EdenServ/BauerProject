@@ -68,13 +68,13 @@ void AjouterLivre(void)
         printf("Identifiant : %d \n",livre.id);
         while(getchar()!='\n');
         printf("Donner le nom du livre\n");
-        lire_espace(livre.titre);
+        lire_espace(livre.titre,sizeof(livre.titre));
         printf("Donner le nom de l'auteur:\n");
-        lire_espace(livre.auteur);
+        lire_espace(livre.auteur,sizeof(livre.titre));
         printf("Donner la maison d'édition du livre :\n");
-        lire_espace(livre.edition);
+        lire_espace(livre.edition, sizeof(livre.titre));
         printf("Donner l'ISBN du livre\n");
-        scanf("%s",livre.ISBN);
+        lire_espace(livre.ISBN,sizeof(livre.ISBN));
         printf("Donner la quantité de livres\n");
         lire_chiffre(&livre.quantity);
         fwrite(&livre,sizeof(livre),1,fp);   // ecriture binaire

@@ -21,8 +21,9 @@ typedef struct
     int id;
     char nom[10];
     char prenom[10];
-    int cin;
+    char cin[8];
     int telephone;
+    char addresse[50];
     char email[50];
     time_t date;
     int emprunts[2];

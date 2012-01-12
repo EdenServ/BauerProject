@@ -12,6 +12,30 @@
 
 #include "Menus.h"
 
+void AfficheMenuAcceuil(void)
+{
+    time_t now;
+
+    CLEAR_SCREEN
+    time(&now);
+
+    BLEU printf("%.24s\t Bauer Project",ctime(&now)); ENDC
+    printf("\n\n\n");
+
+    ROUGE
+    printf("\t\t _______  _______  _______  ______   ___   _______ \n\
+\t\t|       ||       ||       ||    _ | |   | |       |\n\
+\t\t|    ___||  _____||    _  ||   | || |   | |_     _|\n\
+\t\t|   |___ | |_____ |   |_| ||   |_|| |   |   |   |  \n\
+\t\t|    ___||_____  ||    ___||    __ ||   |   |   |  \n\
+\t\t|   |___  _____| ||   |    |   |  |||   |   |   |  \n\
+\t\t|_______||_______||___|    |___|  |||___|   |___|  \n\
+");ENDC
+printf("\n\n\t\t%s    Appuiez sur une touche pour continuer ... %s",BOLD,ENDC_S);
+    getchar();
+
+
+    }
 
 int AfficheMenuPrincipal(void)    // Menu Principal Affiché dans main.c : 4 choix possibles
 {
@@ -19,13 +43,36 @@ int AfficheMenuPrincipal(void)    // Menu Principal Affiché dans main.c : 4 cho
 
     CLEAR_SCREEN
 
-    printf("\t\033[94m*** Gestion d'une bibliothèque ***\033[0m\n");
-    printf("\n\n##############################\n\n");
-    printf("1-Gestion des livres.\n");
-    printf("2-Gestion des abonnés.\n");
-    printf("3-Gestion des emprunts.\n");
-    printf("4-Gestion des Bugs.\n");
-    printf("5-Quitter.\n");
+    time_t now;
+
+    CLEAR_SCREEN
+    time(&now);
+
+    BLEU printf("%.24s\t Bauer Project",ctime(&now)); ENDC
+    printf("\n\n\n");
+
+    BLEU printf("\t#############################################################\n\n");
+    CYAN printf("\t\t       *** Gestion d'une bibliothèque ***");
+    BLEU printf("\n\n\t#############################################################\n\n"); ENDC
+    printf(" %s                           %s\t",UNDL,ENDC_S);
+    printf(" %s                           %s\n",UNDL,ENDC_S);
+    printf("|%s 1  - Gestion des Livres.  %s|\t",BOLD,ENDC_S);
+    printf("|%s 2  - Gestion des Abonnes. %s|\n",BOLD,ENDC_S);
+    printf("|%s                           %s|\t",UNDL,ENDC_S);
+    printf("|%s                           %s|\n",UNDL,ENDC_S);
+
+    printf(" %s                           %s\t",UNDL,ENDC_S);
+    printf(" %s                           %s\n",UNDL,ENDC_S);
+    printf("|%s 3  - Gestion des Emprunts.%s|\t",BOLD,ENDC_S);
+    printf("|%s 4  - Gestion des Bugs.    %s|\n",BOLD,ENDC_S);
+    printf("|%s                           %s|\t",UNDL,ENDC_S);
+    printf("|%s                           %s|\n",UNDL,ENDC_S);
+
+
+    printf("\t\t %s                           %s\n",UNDL,ENDC_S);
+    printf("\t\t|%s 5  - Quittez.             %s|\n",BOLD,ENDC_S);
+    printf("\t\t|%s                           %s|\n",UNDL,ENDC_S);
+
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);
@@ -42,13 +89,33 @@ int AfficheMenuLivres(void)    //Premier sous menu : la gesion des livres 5 choi
 
     CLEAR_SCREEN // on efface l'écran avant l'affichage du nouveau menu
 
-    printf("\tGestion des livres\n");
-    printf("\n\n##############################\n\n");
-    printf("1-Ajouter un livre.\n");
-    printf("2-Supprimer un livre.\n");
-    printf("3-Infos sur un livre.\n");
-    printf("4-Lister les livres.\n");
-    printf("5-Retourner au menu principal.\n");
+    time_t now;
+
+    CLEAR_SCREEN
+    time(&now);
+
+    BLEU printf("%.24s\t Bauer Project",ctime(&now)); ENDC
+    printf("\n\n\n");
+
+    BLEU printf("\t#############################################################\n\n");
+    CYAN printf("\t\t       *** Gestion des livres ***");
+    BLEU printf("\n\n\t#############################################################\n\n"); ENDC
+    printf(" %s                           %s\t",UNDL,ENDC_S);
+    printf(" %s                           %s\n",UNDL,ENDC_S);
+    printf("|%s 1  - Ajouter un livre.    %s|\t",BOLD,ENDC_S);
+    printf("|%s 2  - Supprimer un livre.  %s|\n",BOLD,ENDC_S);
+    printf("|%s                           %s|\t",UNDL,ENDC_S);
+    printf("|%s                           %s|\n",UNDL,ENDC_S);
+    printf(" %s                           %s\t",UNDL,ENDC_S);
+    printf(" %s                           %s\n",UNDL,ENDC_S);
+    printf("|%s 3  - Infos sur les livres.%s|\t",BOLD,ENDC_S);
+    printf("|%s 4  - Lister les livres.   %s|\n",BOLD,ENDC_S);
+    printf("|%s                           %s|\t",UNDL,ENDC_S);
+    printf("|%s                           %s|\n",UNDL,ENDC_S);
+
+    printf("\t\t %s                       %s\n",UNDL,ENDC_S);
+    printf("\t\t|%s 5- Menu principal     %s|\n",BOLD,ENDC_S);
+    printf("\t\t|%s                       %s|\n",UNDL,ENDC_S);
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);
@@ -61,17 +128,40 @@ int AfficheMenuLivres(void)    //Premier sous menu : la gesion des livres 5 choi
 int AfficheMenuAbonnes(void)
 {
     int choix;
+    time_t now;
 
     CLEAR_SCREEN
 
-    printf("\tGestion des Abonnés\n");
-    printf("\n\n##############################\n\n");
-    printf("1-Ajouter un abonné.\n");
-    printf("2-Supprimer un abonné.\n");
-    printf("3-Infos sur un abonné.\n");
-    printf("4-Mettre à jour un abonné.\n");
-    printf("5-Lister les abonnés.\n");
-    printf("6-Retourner au menu principal.\n");
+
+
+    CLEAR_SCREEN
+    time(&now);
+
+    BLEU printf("%.24s\t Bauer Project",ctime(&now)); ENDC
+    printf("\n\n\n");
+
+    BLEU printf("\t#############################################################\n\n");
+    CYAN printf("\t\t       *** Gestion des Abonnés ***");
+    BLEU printf("\n\n\t#############################################################\n\n"); ENDC
+    printf(" %s                           %s\t",UNDL,ENDC_S);
+    printf(" %s                           %s\n",UNDL,ENDC_S);
+    printf("|%s 1 - Ajouter un abonné.    %s|\t",BOLD,ENDC_S);
+    printf("|%s 2 - Supprimer un abonné.  %s|\n",BOLD,ENDC_S);
+    printf("|%s                           %s|\t",UNDL,ENDC_S);
+    printf("|%s                           %s|\n",UNDL,ENDC_S);
+    printf(" %s                           %s\t",UNDL,ENDC_S);
+    printf(" %s                           %s\n",UNDL,ENDC_S);
+    printf("|%s 3 - Infos sur les abonnés.%s|\t",BOLD,ENDC_S);
+    printf("|%s 4 - Lister les abonnés.   %s|\n",BOLD,ENDC_S);
+    printf("|%s                           %s|\t",UNDL,ENDC_S);
+    printf("|%s                           %s|\n",UNDL,ENDC_S);
+    printf(" %s                           %s\t",UNDL,ENDC_S);
+    printf(" %s                           %s\n",UNDL,ENDC_S);
+    printf("|%s 5 - Mettre à jour abonnés.%s|\t",BOLD,ENDC_S);
+    printf("|%s 6 - Menu Principal.       %s|\n",BOLD,ENDC_S);
+    printf("|%s                           %s|\t",UNDL,ENDC_S);
+    printf("|%s                           %s|\n",UNDL,ENDC_S);
+
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);
@@ -88,12 +178,21 @@ int AfficheMenuEmprunts(void)
 
     CLEAR_SCREEN
 
-    printf("\tGestion des Emprunts\n");
-    printf("\n\n##############################\n\n");
-    printf("1-Demande d'emprunt.\n");
-    printf("2-Retour d'un livre.\n");
-    printf("3-Infos sur les emprunts.\n");
-    printf("4-Retournez au menu Principal.\n");
+    BLEU printf("\t#############################################################\n\n");
+    CYAN printf("\t\t       *** Gestion des Emprunts ***");
+    BLEU printf("\n\n\t#############################################################\n\n"); ENDC
+    printf(" %s                           %s\t",UNDL,ENDC_S);
+    printf(" %s                           %s\n",UNDL,ENDC_S);
+    printf("|%s 1- Demande d'emprunt.     %s|\t",BOLD,ENDC_S);
+    printf("|%s 2- Retour d'un livre.     %s|\n",BOLD,ENDC_S);
+    printf("|%s                           %s|\t",UNDL,ENDC_S);
+    printf("|%s                           %s|\n",UNDL,ENDC_S);
+    printf(" %s                           %s\t",UNDL,ENDC_S);
+    printf(" %s                           %s\n",UNDL,ENDC_S);
+    printf("|%s 3- Infos sur les emprunts.%s|\t",BOLD,ENDC_S);
+    printf("|%s 4- Menu Principal.        %s|\n",BOLD,ENDC_S);
+    printf("|%s                           %s|\t",UNDL,ENDC_S);
+    printf("|%s                           %s|\n",UNDL,ENDC_S);
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);
@@ -109,14 +208,26 @@ int AfficheMenuBugs(void)
     int choix;
 
     CLEAR_SCREEN
+    BLEU printf("\t#############################################################\n\n");
+    CYAN printf("\t\t       *** Gestion de Bugs ***");
+    BLEU printf("\n\n\t#############################################################\n\n"); ENDC
+    printf(" %s                                          %s\t",UNDL,ENDC_S);
+    printf(" %s                                          %s\n",UNDL,ENDC_S);
+    printf("|%s 1- À propos de la gestion des livres.    %s|\t",BOLD,ENDC_S);
+    printf("|%s 2- À propos de la gestion des abonnés.   %s|\n",BOLD,ENDC_S);
+    printf("|%s                                          %s|\t",UNDL,ENDC_S);
+    printf("|%s                                          %s|\n",UNDL,ENDC_S);
+    printf(" %s                                          %s\t",UNDL,ENDC_S);
+    printf(" %s                                          %s\n",UNDL,ENDC_S);
+    printf("|%s 3- À propos de la gestion des emprunts.  %s|\t",BOLD,ENDC_S);
+    printf("|%s 4  - Autre.                              %s|\n",BOLD,ENDC_S);
+    printf("|%s                                          %s|\t",UNDL,ENDC_S);
+    printf("|%s                                          %s|\n",UNDL,ENDC_S);
 
-    printf("\tGestion des Bugs\n");
-    printf("\n\n##############################\n\n");
-    printf("1-Soumettre un bug à propos de la gestion des livres.\n");
-    printf("2-Soumettre un bug à propos de la gestion des abonnés.\n");
-    printf("3-Soumettre un bug à propos de la gestion des emprunts.\n");
-    printf("4-Soumettre un bug : Autre.\n");
-    printf("5-Retournez au menu Princpal.\n");
+    printf("\t\t %s                                      %s\n",UNDL,ENDC_S);
+    printf("\t\t|%s 5- Menu principal                    %s|\n",BOLD,ENDC_S);
+    printf("\t\t|%s                                      %s|\n",UNDL,ENDC_S);
+
 
     printf("\nTapez votre choix:\n");
     scanf("%d",&choix);
@@ -130,9 +241,9 @@ int AfficheMenuSeverty(void)
     CLEAR_SCREEN
 
     printf("\tQuel est le degré du bug ?\n");
-    printf("1-Amélioration.\n");
-    printf("2-Normal.\n");
-    printf("3-Crituque.\n");
+    VERT printf("1-Amélioration.\n");
+    JAUNE printf("2-Normal.\n");
+    ROUGE printf("3-Crituque.\n");ENDC
     printf("4-Retournez au menu Princpal.\n");
 
     printf("\nTapez votre choix:\n");

@@ -194,7 +194,7 @@ void lister_fichier(FILE *f, int i)
             j=0;
             while(fread(&a,sizeof(ABONNE),1,f)!=0)
             {
-                printf("%d %s %s %d %s %d %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.email,a.telephone,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
+                printf("%d %s %s %s %s %d %s %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.email,a.telephone,a.addresse,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
                 j++;
                 if(j%10 == 0)
                 {
@@ -235,18 +235,57 @@ void journaliser(char *s)
 }
 
 
-void lire_espace(char *s)
+void lire_espace(char *s, int size)
 {
 
     char c;
     int i=0;
     do
     {
+        if(i> size)
+            printf("Erreur de saisie, chaine trop longue\n");
+        i = 0;
+        do
+        {
         c=getchar();
         s[i]=c;
         i++;
     }while(c!='\n');
     s[i-1]='\0';
+    }while(i>size);
+}
+
+void lire_cin(char cin[8])
+{
+    int i=0, ok = 1;
+    char c;
+
+    do
+    {
+        if(i!=8 || ok == 0)
+            printf("CIN invalide !\n");
+        i = 0;
+        ok = 1;
+    do
+    {
+        c = getchar();
+        if(c<='9' && c>='0')
+        {
+            cin[i]=c;
+            i++;
+        }
+        else if(c != '\n')
+        {
+          ok = 0;
+         break;
+        }
+    }while(c != '\n');
+    cin[i] = '\0';
+    printf("\nDebug i %d | ok %d\n",i,ok);
+    printf("DEBUG : %s",cin);
+
+}while(i!=8 || ok == 0);
+
 }
 
 void lire_chiffre(int *a)
@@ -256,7 +295,7 @@ void lire_chiffre(int *a)
     int ok=0;
     do
     {
-        lire_espace(e);
+        lire_espace(e,sizeof(e));
         if(e[0]=='0')
             sprintf(aux,"0%d",atoi(e));
         else
@@ -272,5 +311,36 @@ void lire_chiffre(int *a)
     }while(!ok);
     *a = atoi(e);
 
+
+}
+
+void lire_email(char email[50])
+{
+
+
+    char c;
+    int i=0,k=0,ok = 0;;
+    do
+    {
+        if(i> 50)
+            printf("Erreur de saisie, chaine trop longue\n");
+        i = 0;
+        if(k != 1 || ok == 0)
+            printf("Email invalide !\n");
+        k = 0;
+        ok = 1;
+
+        do
+        {
+        c=getchar();
+        if(c == '@');
+            k++;
+        if (c == ' ')
+            ok = 0;
+        email[i]=c;
+        i++;
+    }while(c!='\n');
+    email[i-1]='\0';
+    }while(i>50 || k != 1 || ok == 0);
 
 }

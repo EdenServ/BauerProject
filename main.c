@@ -24,6 +24,7 @@ int main(int argc, char **argv)
 {
     int choix;
 
+    AfficheMenuAcceuil();
 
     journaliser("Ouverture du programme");
     do

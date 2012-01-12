@@ -71,15 +71,15 @@ ABONNE abonne,aux;
         printf("Identifiant : %d \n",abonne.id);
         while(getchar()!='\n');
         printf("Donner le nom de l'abonné\n");
-        lire_espace(abonne.nom);
+        lire_espace(abonne.nom,sizeof(abonne.nom));
         printf("Donner le prénom de l'abonné\n");
-        lire_espace(abonne.prenom);
+        lire_espace(abonne.prenom,sizeof(abonne.prenom));
         printf("Donner le num de CIN de l'abonné\n");
-        lire_chiffre(&abonne.cin);
+        lire_cin(abonne.cin);
         printf("Donner le num de téléphone de l'abonné\n");
         lire_chiffre(&abonne.telephone);
         printf("Donner l'email de l'abonné\n");
-        scanf("%s",abonne.email);
+        lire_email(abonne.email);
         time(&abonne.date);
         fwrite(&abonne,sizeof(abonne),1,fp);   // ecriture binaire
         printf("Abonné ajouté avec succès\n!");
@@ -128,7 +128,8 @@ void InfosAbonnes(void)
 {
     FILE *f = NULL;
     ABONNE a;
-    int id,cin;
+    int id;
+    char cin[8];
 
 
     f = fopen(DB_ABONNE,"rb");
@@ -138,12 +139,12 @@ void InfosAbonnes(void)
         printf("l'ID (sinon zéro): ");
         scanf("%d",&id);
         printf("l'CIN de l'abonné (zéro sinon): ");
-        scanf("%d",&cin);
+        lire_cin(cin);
 
         while(fread(&a,sizeof(ABONNE),1,f)!=0)
         {
-            if(a.id == id || a.cin == cin)
-                printf("%d %s  %s %d %d %s %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.telephone,a.email,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
+            if(a.id == id || strcmp(a.cin,cin) == 0)
+                printf("%d %s  %s %s %d %s %s %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.telephone,a.email,a.addresse,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
         }
         fclose(f);
     }else
