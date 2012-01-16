@@ -30,6 +30,9 @@ void TraitementEmprunts(int choix)
             InfoEmprunts();
             break;
         case 4:
+            ListerEmprunts();
+            break;
+        case 5:
             break;
         default:
             printf("Ce choix n'existe pas");
@@ -155,6 +158,25 @@ void InfoEmprunts(void)
         fclose(f);
     }else
         printf("Proclème lors de l'accès à la base de données des emprunts\n");
+
+
+}
+
+void ListerEmprunts(void)
+{
+
+    FILE *f = NULL;
+
+    f = fopen(DB_EMPRUNT,"rb");
+    if(f != NULL)
+    {   if(taille_fichier(f))
+            lister_fichier(f,3);
+        else
+            printf("Fichier vide\n");
+        fclose(f);
+    }else
+        printf("Erreur lors de l'ouverture de la base de donnée des livres !\n");
+
 
 
 }

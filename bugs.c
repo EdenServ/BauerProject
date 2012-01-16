@@ -133,7 +133,6 @@ void bugzilla_push(char *data)
 
 void SoumettreBugLivre(int choix)
 {
-    printf("On entre dans la soumissionLivre\n");
     char data[70];
     int i=1;
     switch(choix)

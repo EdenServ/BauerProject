@@ -108,12 +108,15 @@ void SupprimerLivre(void)
         fclose(fp);
         if(taille>= sizeof(LIVRE)*id)
         {
-            if(!supprimer_ligne(id,sizeof(LIVRE),DB_LIVRE,1))
+            if(possible_supp(id,1))
             {
-                printf("Livre supprimé avec succès !\n");
+                if(!supprimer_ligne(id,sizeof(LIVRE),DB_LIVRE,1))
+                {
+                    printf("Livre supprimé avec succès !\n");
+                }
+                else
+                    printf("Erreur lors de la suppression du fichier !\n");
             }
-            else
-                printf("Erreur lors de la suppression du fichier !\n");
         }else
             printf("Ce livre n'existe pas dans la base de donnée.\n");
        fclose(fp);
@@ -127,23 +130,26 @@ void SupprimerLivre(void)
 void InfosLivre(void)
 {
     FILE *f = NULL;
-    LIVRE l;
-    int id;
-    char isbn[sizeof(l.ISBN)];
-
+    LIVRE l,laux;
 
     f = fopen(DB_LIVRE,"rb");
     if(f != NULL)
     {
-        printf("Donner l'id ou l'isbn du livre à rechercher:\n");
+        printf("Entrez les informations du livre à rechercher:\n");
         printf("l'ID (sinon zéro): ");
-        scanf("%d",&id);
+        scanf("%d",&laux.id);
         printf("l'ISBN du livre (zéro sinon): ");
-        scanf("%s",isbn);
+        lire_isbn(laux.ISBN);
+        printf("Donner le titre (zéro sinon):\n");
+        lire_espace(laux.titre,sizeof(l.titre));
+        printf("Donner l'auteur du livre (zéro sinon):\n");
+        lire_espace(laux.auteur,sizeof(l.auteur));
+        printf("Donner la maison d'edition (zéro sinon):\n");
+        lire_espace(laux.edition,sizeof(l.edition));
 
         while(fread(&l,sizeof(LIVRE),1,f)!=0)
         {
-            if(l.id == id || strcmp(l.ISBN,isbn)==0)
+            if(l.id == laux.id || strcmp(l.ISBN,laux.ISBN)==0 || strcmp(l.titre,laux.titre) == 0 || strcmp(l.auteur,laux.auteur) == 0 || strcmp(l.edition,laux.edition) == 0 )
                 printf("%d %s %s %s %s %d\n",l.id,l.titre,l.auteur,l.edition,l.ISBN,l.quantity);
         }
 

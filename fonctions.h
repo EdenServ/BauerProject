@@ -48,5 +48,7 @@ void lire_espace(char *s, int size);  // permet une saisie avec espaces;
 void lire_chiffre(int *a);  // permet un controle au saisie des chiffres;
 void lire_cin(char cin[8]);
 void lire_email(char email[50]);
+void lire_isbn(char isbn[13]);
+int possible_supp(int id, int m);
 
 #endif

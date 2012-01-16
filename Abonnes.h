@@ -23,8 +23,8 @@ typedef struct
     char prenom[10];
     char cin[8];
     int telephone;
-    char addresse[50];
     char email[50];
+    int etat;
     time_t date;
     int emprunts[2];
 
@@ -35,6 +35,6 @@ void AjouterAbonne(void);
 void SupprimerAbonne(void);
 void InfosAbonnes(void);
 void ListerAbonnes(void);
-void MiseAJourAbonnee(void);
+void MiseAJourAbonne(void);
 
 #endif

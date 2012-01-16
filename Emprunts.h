@@ -38,6 +38,7 @@ void TraitementEmprunts(int choix);
 void DemandeEmprunts(void);
 void RetourEmprunts(void);
 void InfoEmprunts(void);
+void ListerEmprunts(void);
 void lier_abonne(ABONNE a, int i);
 void decrementer_quantity(LIVRE l);
 void retirer_abonne(int id, int idE);

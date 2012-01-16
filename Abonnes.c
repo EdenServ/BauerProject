@@ -34,7 +34,7 @@ void TraitementAbonnes(int choix)
             InfosAbonnes();
             break;
         case 4:
-            MiseAJourAbonnee();
+            MiseAJourAbonne();
             break;
         case 5:
             ListerAbonnes();
@@ -64,9 +64,14 @@ ABONNE abonne,aux;
             abonne.id=aux.id+1;  //auto incrementation de l'id
         }
         else
+        {
             abonne.id=1;
+        }
+
+            // Initialisation
             abonne.emprunts[0]=0;
             abonne.emprunts[1]=0;
+            abonne.etat=1;
 
         printf("Identifiant : %d \n",abonne.id);
         while(getchar()!='\n');
@@ -74,17 +79,14 @@ ABONNE abonne,aux;
         lire_espace(abonne.nom,sizeof(abonne.nom));
         printf("Donner le prénom de l'abonné\n");
         lire_espace(abonne.prenom,sizeof(abonne.prenom));
-        printf("Donner le num de CIN de l'abonné\n");
-        lire_cin(abonne.cin);
-        FLUSHH
         printf("Donner le num de téléphone de l'abonné\n");
         lire_chiffre(&abonne.telephone);
         printf("Donner l'email de l'abonné\n");
         lire_email(abonne.email);
-        printf("Donner l'adresse postale :\n");
-        lire_espace(abonne.addresse,sizeof(abonne.addresse));
+        printf("Donner le num de CIN de l'abonné\n");
+        lire_cin(abonne.cin);
 
-        printf("%d %s  %s %s %d %s %s %d %d\n",abonne.id,abonne.nom,abonne.prenom,abonne.cin,abonne.telephone,abonne.email,abonne.addresse,abonne.emprunts[0],abonne.emprunts[1]);
+        printf("%d %s  %s %s %d  %s %d %d %d\n",abonne.id,abonne.nom,abonne.prenom,abonne.cin,abonne.telephone,abonne.email,abonne.emprunts[0],abonne.emprunts[1],abonne.etat);
 
         time(&abonne.date);
         fwrite(&abonne,sizeof(abonne),1,fp);   // ecriture binaire
@@ -114,12 +116,15 @@ void SupprimerAbonne(void)
         fclose(fp);
         if(taille>= sizeof(ABONNE)*id)
         {
-            if(!supprimer_ligne(id,sizeof(ABONNE),DB_ABONNE,2))
+            if(possible_supp(id,2))
             {
-                printf("Abonné supprimé avec succès !\n");
-            }
-            else
+                if(!supprimer_ligne(id,sizeof(ABONNE),DB_ABONNE,2))
+                {
+                    printf("Abonné supprimé avec succès !\n");
+                }
+                else
                 printf("Erreur lors de la suppression de l'abonnée !\n");
+            }
         }else
             printf("Cet abonné n'existe pas dans la base de donnée.\n");
         //fclose(fp);
@@ -150,7 +155,7 @@ void InfosAbonnes(void)
         while(fread(&a,sizeof(ABONNE),1,f)!=0)
         {
             if(a.id == id || strcmp(a.cin,cin) == 0)
-                printf("%d %s  %s %s %d %s %s %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.telephone,a.email,a.addresse,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
+                printf("%d %s  %s %s %d %s  %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.telephone,a.email,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
         }
         fclose(f);
     }else
@@ -183,12 +188,11 @@ void ListerAbonnes(void)
 
 }
 
-void MiseAJourAbonnee(void)    // cette fonction met à jour un abonnée en cas de renouvellement d'abonnement.
+void MiseAJourAbonne(void)    // cette fonction met à jour un abonnée en cas de renouvellement d'abonnement.
 {
     FILE *f = NULL;
     int id = 0,d=0;
-    ABONNE a;
-    //struct tm *t,*t1;
+    ABONNE a,aux;
     time_t now;
     f = fopen(DB_ABONNE,"rb+");
     if(f != NULL)
@@ -210,6 +214,14 @@ void MiseAJourAbonnee(void)    // cette fonction met à jour un abonnée en cas 
                 printf("L'abonnement n'est pas encore fini !\n");
             }else
             {
+                    printf("Voulez vous mettre à jour l'email actuel? (%s): (zéro sinon)\n",a.email);
+                    lire_email(aux.email);
+                    printf("Voulez vous mettre à jour le numéro de téléphone ? (%d) : (zéro sinon)\n",a.telephone);
+                    lire_chiffre(&aux.telephone);
+                    if(strcmp(aux.cin,"0")!=0)
+                        strcpy(a.cin,aux.cin);
+                    if(aux.telephone != 0)
+                        a.telephone = aux.telephone;
                     time(&a.date);
                     fwrite(&a,sizeof(ABONNE),1,f);
                     printf("Abonnement mis à jour.\n");

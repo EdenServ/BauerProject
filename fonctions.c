@@ -12,6 +12,8 @@
 #include "fonctions.h"
 #include "Abonnes.h"
 #include "Livres.h"
+#include "Emprunts.h"
+#include "Menus.h"
 
 
 
@@ -168,13 +170,16 @@ void lister_fichier(FILE *f, int i)
     int j=0;
     LIVRE l;
     ABONNE a;
+    EMPRUNT e;
+    time_t now;
 
     switch(i)
     {
         case 1:     //lister la base de donnés des livres
+            printf("ID\tTITRE\t\t AUTEUR\t\t EDITION\t\tISBN\t\t QUANTITÉ\n");
             while(fread(&l,sizeof(l),1,f)!=0)
             {
-                printf("i:%d t:%s a:%s e:%s is:%s q:%d\n",l.id,l.titre,l.auteur,l.edition,l.ISBN,l.quantity);
+                printf("%d\t%s\t\t %s\t\t %s\t\t %s\t\t %d\n",l.id,l.titre,l.auteur,l.edition,l.ISBN,l.quantity);
                 j++;
                 if(j%10 == 0)
                 {
@@ -192,9 +197,11 @@ void lister_fichier(FILE *f, int i)
             break;
         case 2:
             j=0;
+            printf("ID\tNOM\tPRENOM\tCIN\tEMAIL\tTELEPHONE\tDATE INS.\tEMPRUNS\n");
             while(fread(&a,sizeof(ABONNE),1,f)!=0)
             {
-                printf("%d %s %s %s %s %d %s %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.email,a.telephone,a.addresse,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
+
+                printf("%d %s %s %s %s %d %s %d %d\n",a.id,a.nom,a.prenom,a.cin,a.email,a.telephone,ctime(&a.date),a.emprunts[0],a.emprunts[1]);
                 j++;
                 if(j%10 == 0)
                 {
@@ -210,6 +217,29 @@ void lister_fichier(FILE *f, int i)
                 }
             }
             break;
+        case 3:
+        j=0;
+        time(&now);
+            while(fread(&e,sizeof(EMPRUNT),1,f)!=0)
+            {
+                if(difftime(now,a.date)>DEUX_SEMAINES && e.etat == 1)
+                    ROUGE
+                printf("%d %d %d %d %s\n",e.id,e.idL,e.idA,e.etat,ctime(&a.date));ENDC
+                j++;
+                if(j%10 == 0)
+                {
+                    c = ' ';
+                    while(c!= 'o' && c !='O' && c != 'n' && c != 'N')
+                    {
+                        printf("Voulez vous voir plus ? (O/n) :\n");
+                        scanf("%c",&c);
+                    }
+                    if(c == 'o' || c == 'O')
+                        break;
+
+                }
+            }
+
     }
 
 
@@ -219,7 +249,7 @@ void lister_fichier(FILE *f, int i)
 void journaliser(char *s)
 {
     time_t temps;
-    char date[24];
+    char date[25];
     FILE *f=NULL;
 
     time(&temps);
@@ -257,40 +287,35 @@ void lire_espace(char *s, int size)
 
 void lire_cin(char cin[8])
 {
-    int i=0, ok = 1, j=0;;
-    char c;
+    int ok = 1,i=0;
 
     do
     {
-        if((i!=8 || ok == 0)&& j !=0)
-            printf("CIN invalide !\n");
-        j++;
-        i = 0;
-        ok = 1;
-    do
-    {
-        c = getchar();
-        if(c<='9' && c>='0')
+        if(!ok)
+            {
+                printf("Erreur lors de la saisie de la CIN\n");
+                ok=1;
+            }
+        scanf("%s",cin);
+        if(strlen(cin)!=8)
         {
-            cin[i]=c;
-            i++;
-        }
-        else if(c != '\n')
-        {
-          ok = 0;
-         break;
-        }
-    }while(c != '\n');
-    cin[i] = '\0';
-    printf("\nDebug i %d | ok %d\n",i,ok);
-    printf("DEBUG2 : %s",cin);
-    if(i==1 && cin[0] == '0')
-        break;
+            ok = 0;
+            continue;
+            }else if(strlen(cin)==1 && cin[0]=='0');
+                break;
+        for(i=0;i<8;i++)
+            {
+                if(cin[i]<'0' || cin[i]>'9')
+                {
+                    ok = 0;
+                    break;
+                }
+            }
 
-}while(  i!=8 || ok == 0);
+
+}while(ok != 1);
 
 }
-
 void lire_chiffre(int *a)
 {
 
@@ -327,7 +352,6 @@ void lire_email(char email[50])
     {
         if(i> 50)
             printf("Erreur de saisie, chaine trop longue\n");
-        printf("DEBUG : k:%d ok:%d j:%d\n",k,ok,j);
         i = 0;
         if((k != 1 || ok == 0)&& j!=0)
             printf("Email invalide !\n");
@@ -347,5 +371,81 @@ void lire_email(char email[50])
     }while(c!='\n');
     email[i-1]='\0';
     }while(i>50 || k != 1 || ok == 0);
+
+}
+
+void lire_isbn(char isbn[13])
+{
+    int ok = 1,i=0;
+
+    do
+    {
+        if(!ok)
+            {
+                printf("Erreur lors de la saisie de l'isbn il doit être composé uniquement de chiffres");
+                ok = 1;
+            }
+
+        scanf("%s",isbn);
+        if(strlen(isbn)!=13)
+        {
+            ok=0;
+            continue;
+        }
+        for(i=0;i<13;i++)
+        {
+            if(isbn[i]<'0' || isbn[i]>'9')
+                {
+                    ok = 0;
+                    break;
+                }
+        }
+
+
+
+    }while(ok != 1);
+
+}
+
+int possible_supp(int id,int m)
+{
+
+    EMPRUNT e;
+    FILE *f = NULL;
+
+    f = fopen(DB_EMPRUNT,"rb");
+    if(f != NULL)
+    {
+        switch(m)
+        {
+            case 1:
+                while(fread(&e,sizeof(EMPRUNT),1,f))
+                {
+                    if(e.idL == id && e.etat == 1)
+                    {
+                        printf("Ce livre est encour d'emprunt vous ne pouvez pas le supprimer !\n");
+                        return 0;
+                    }
+                }
+                break;
+            case 2:
+                while(fread(&e,sizeof(EMPRUNT),1,f))
+                {
+                    if(e.idA == id && e.etat == 1)
+                    {
+                        printf("Cet abonné dispose encore de livres vous ne pouvez pas le supprimer !\n");
+                        return 0;
+                    }
+                }
+                break;
+
+        }
+
+        return 1;
+    }else
+    {
+        printf("Erreur lors de l'ouverture de la base de donné des emprunts !\n");
+        return 0;
+    }
 
 }
